@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material3.*
+import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,16 +29,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.petcaresuperapp.R
 import com.example.petcaresuperapp.presentation.screens.auth.AuthViewModel
-import com.example.petcaresuperapp.ui.theme.PrimaryGreen
-import com.example.petcaresuperapp.ui.theme.TextDark
-import com.example.petcaresuperapp.ui.theme.TextGrey
+import com.example.petcaresuperapp.ui.theme.*
 import kotlinx.coroutines.launch
 
 data class OnboardingData(
     val title: String,
     val description: String,
     val image: Int,
-    val gradientColors: List<Color>
+    val colors: List<Color>
 )
 
 @OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
@@ -49,21 +48,21 @@ fun OnboardingScreen(
     val onboardingPages = listOf(
         OnboardingData(
             title = "Manage Your Pet Health",
-            description = "Centralize all your pet's medical records, vaccination schedules, and health history in one secure digital card.",
+            description = "Centralize all your pet's medical records and health history in one secure digital card.",
             image = R.drawable.onboaring1,
-            gradientColors = listOf(Color(0xFFE8F5E9), Color(0xFFC8E6C9), Color.White)
+            colors = listOf(PrimaryLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         ),
         OnboardingData(
             title = "Vet Appointments",
-            description = "Book appointments with top-rated veterinarians in your area with just a few taps. Never miss a checkup again.",
+            description = "Book appointments with top-rated veterinarians in your area with just a few taps.",
             image = R.drawable.onboaring2,
-            gradientColors = listOf(Color(0xFFE3F2FD), Color(0xFFBBDEFB), Color.White)
+            colors = listOf(SecondaryLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         ),
         OnboardingData(
             title = "Adoption & Community",
-            description = "Find your perfect companion or help lost pets find their way home. Connect with a caring community of pet lovers.",
+            description = "Connect with a caring community of pet lovers and find your perfect companion.",
             image = R.drawable.onboaring3,
-            gradientColors = listOf(Color(0xFFFFF3E0), Color(0xFFFFE0B2), Color.White)
+            colors = listOf(AccentLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         )
     )
 
@@ -75,7 +74,7 @@ fun OnboardingScreen(
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = onboardingPages[pagerState.currentPage].gradientColors
+                    colors = onboardingPages[pagerState.currentPage].colors
                 )
             )
     ) {
@@ -97,12 +96,12 @@ fun OnboardingScreen(
                 Row(
                     Modifier
                         .align(Alignment.CenterStart)
-                        .height(50.dp),
+                        .height(56.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     repeat(onboardingPages.size) { iteration ->
-                        val color = if (pagerState.currentPage == iteration) PrimaryGreen else Color.LightGray
+                        val color = if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant
                         val width by animateDpAsState(
                             targetValue = if (pagerState.currentPage == iteration) 24.dp else 8.dp,
                             label = "width"
@@ -135,7 +134,10 @@ fun OnboardingScreen(
                         .height(56.dp)
                         .width(if (isLastPage) 160.dp else 64.dp),
                     shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryGreen),
+                    colors = buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    ),
                     contentPadding = PaddingValues(0.dp)
                 ) {
                     AnimatedContent(
@@ -146,19 +148,9 @@ fun OnboardingScreen(
                         label = "buttonText"
                     ) { last ->
                         if (last) {
-                            Text(
-                                "Get Started",
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
+                            Text("Get Started", fontWeight = FontWeight.Bold)
                         } else {
-                            Icon(
-                                Icons.Rounded.ChevronRight,
-                                contentDescription = "Next",
-                                tint = Color.White,
-                                modifier = Modifier.size(32.dp)
-                            )
+                            Icon(Icons.Rounded.ChevronRight, contentDescription = "Next")
                         }
                     }
                 }
@@ -179,9 +171,8 @@ fun OnboardingScreen(
             ) {
                 Text(
                     "Skip",
-                    color = TextGrey,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 16.sp
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                    fontWeight = FontWeight.SemiBold
                 )
             }
         }
@@ -229,7 +220,7 @@ fun OnboardingPage(data: OnboardingData, isSelected: Boolean) {
             text = data.title,
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.ExtraBold,
-            color = TextDark,
+            color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center,
             modifier = Modifier.graphicsLayer { this.alpha = alpha }
         )
@@ -239,7 +230,7 @@ fun OnboardingPage(data: OnboardingData, isSelected: Boolean) {
         Text(
             text = data.description,
             style = MaterialTheme.typography.bodyLarge,
-            color = TextGrey,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
             textAlign = TextAlign.Center,
             lineHeight = 24.sp,
             modifier = Modifier.graphicsLayer { this.alpha = alpha }
