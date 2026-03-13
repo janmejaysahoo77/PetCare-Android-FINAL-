@@ -3,8 +3,11 @@ package com.example.petcaresuperapp.presentation.screens.home
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -34,13 +37,6 @@ import coil.compose.AsyncImage
 import com.example.petcaresuperapp.presentation.navigation.Screen
 import com.example.petcaresuperapp.ui.theme.*
 
-data class HomeFeature(
-    val title: String,
-    val icon: ImageVector,
-    val colors: List<Color>,
-    val route: String
-)
-
 @Composable
 fun HomeScreen(
     navController: NavController,
@@ -49,60 +45,125 @@ fun HomeScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(paddingValues)
-            .padding(horizontal = 20.dp)
+            .background(BackgroundDark)
+            .padding(paddingValues),
+        contentPadding = PaddingValues(20.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        Text(
-            if (uiState.isLoading) "Good morning!" else "Good morning, ${uiState.userName}!",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
-        
-        if (!uiState.isLoading && uiState.hasPet) {
+        // Top Section: Greeting & Profile
+        item {
+            Column {
+                Text(
+                    text = if (uiState.isLoading) "Hello!" else "Hello, ${uiState.userName}!",
+                    style = Typography.displayLarge,
+                    color = TextWhite
+                )
+                Text(
+                    text = "Welcome back to PetCare",
+                    style = Typography.bodyMedium,
+                    color = TextGray
+                )
+            }
+        }
+
+        // Pet Profile Card
+        item {
+            AnimatedVisibility(
+                visible = !uiState.isLoading,
+                enter = fadeIn() + slideInVertically()
+            ) {
+                if (uiState.hasPet) {
+                    PremiumPetCard(
+                        petName = uiState.petName,
+                        petDescription = uiState.petDescription,
+                        petImageUrl = uiState.petImageUrl
+                    )
+                } else {
+                    EmptyPetCard(
+                        onClickAddPet = { navController.navigate(Screen.AddPet.route) }
+                    )
+                }
+            }
+        }
+
+        // Health Stats Section
+        item {
+            Column {
+                Text(
+                    "Health Statistics",
+                    style = Typography.titleLarge,
+                    color = TextWhite,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    StatCard(
+                        modifier = Modifier.weight(1f),
+                        icon = Icons.Rounded.Favorite,
+                        label = "Heart Rate",
+                        value = "85 bpm",
+                        color = Color(0xFFEF4444),
+                        delay = 0
+                    )
+                    StatCard(
+                        modifier = Modifier.weight(1f),
+                        icon = Icons.Rounded.Timer,
+                        label = "Activity",
+                        value = "45 min",
+                        color = Primary2026,
+                        delay = 100
+                    )
+                    StatCard(
+                        modifier = Modifier.weight(1f),
+                        icon = Icons.Rounded.Scale,
+                        label = "Weight",
+                        value = "12.5 kg",
+                        color = Color(0xFF3B82F6),
+                        delay = 200
+                    )
+                }
+            }
+        }
+
+        // Quick Actions
+        item {
             Text(
-                "Here's how ${uiState.petName} is doing today.",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                "Quick Actions",
+                style = Typography.titleLarge,
+                color = TextWhite,
+                modifier = Modifier.padding(bottom = 16.dp)
             )
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                item {
+                    ActionCard("Vets", Icons.Rounded.LocalHospital, Primary2026) {
+                        navController.navigate(Screen.VetSearch.route)
+                    }
+                }
+                item {
+                    ActionCard("Store", Icons.Rounded.Store, Info2026) {
+                        navController.navigate(Screen.Marketplace.route)
+                    }
+                }
+                item {
+                    ActionCard("Forum", Icons.Rounded.Forum, Secondary2026) {
+                        navController.navigate(Screen.RescueForum.route)
+                    }
+                }
+            }
         }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        if (uiState.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-        } else if (uiState.hasPet) {
-            PetProfileCard(
-                petName = uiState.petName,
-                petDescription = uiState.petDescription,
-                petImageUrl = uiState.petImageUrl
-            )
-        } else {
-            EmptyPetCard(
-                onClickAddPet = { navController.navigate("add_pet") } // Or whichever route goes to Add Pet
-            )
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            "Quick Summary",
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        QuickInfoSection()
     }
 }
 
 @Composable
-fun PetProfileCard(
+fun PremiumPetCard(
     petName: String,
     petDescription: String,
     petImageUrl: String
@@ -110,62 +171,148 @@ fun PetProfileCard(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(140.dp),
+            .height(220.dp)
+            .animateContentSize(),
         shape = RoundedCornerShape(28.dp),
-        tonalElevation = 8.dp,
-        color = MaterialTheme.colorScheme.surfaceVariant
+        color = SurfaceDark,
+        tonalElevation = 8.dp
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Pet Image
-            if (petImageUrl.isNotEmpty()) {
-                AsyncImage(
-                    model = petImageUrl,
-                    contentDescription = "Pet Image",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
-                )
-            } else {
-                Box(
-                    modifier = Modifier
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(PrimaryColor.copy(alpha = 0.2f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(Icons.Default.Pets, contentDescription = null, tint = PrimaryColor, modifier = Modifier.size(40.dp))
-                }
-            }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            // Pet Details
+        Box(modifier = Modifier.fillMaxSize()) {
+            AsyncImage(
+                model = petImageUrl.ifEmpty { "https://images.unsplash.com/photo-1543466835-00a7907e9de1" },
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            // Gradient Overlay
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
+                            startY = 300f
+                        )
+                    )
+            )
+            
             Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(24.dp)
             ) {
                 Text(
                     text = petName,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    style = Typography.headlineLarge,
+                    color = Color.White
                 )
-                Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = petDescription.ifEmpty { "No description provided." },
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    maxLines = 3,
+                    text = petDescription.ifEmpty { "A very happy pet!" },
+                    style = Typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.8f),
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }
+            
+            Surface(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp),
+                color = Primary2026,
+                shape = CircleShape
+            ) {
+                Icon(
+                    Icons.Rounded.Pets,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.padding(8.dp).size(20.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun StatCard(
+    modifier: Modifier = Modifier,
+    icon: ImageVector,
+    label: String,
+    value: String,
+    color: Color,
+    delay: Int
+) {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(delay.toLong())
+        visible = true
+    }
+
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn() + scaleIn(initialScale = 0.8f),
+        modifier = modifier
+    ) {
+        Surface(
+            modifier = Modifier
+                .height(130.dp)
+                .border(
+                    width = 1.dp,
+                    brush = Brush.verticalGradient(
+                        colors = listOf(Color.White.copy(alpha = 0.1f), Color.Transparent)
+                    ),
+                    shape = RoundedCornerShape(24.dp)
+                ),
+            color = SurfaceDark.copy(alpha = 0.6f),
+            shape = RoundedCornerShape(24.dp),
+            tonalElevation = 4.dp
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .background(color.copy(alpha = 0.2f), CircleShape),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(18.dp))
+                }
+                Column {
+                    Text(value, style = Typography.titleLarge, color = TextWhite)
+                    Text(label, style = Typography.labelMedium, color = TextGray)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ActionCard(
+    title: String,
+    icon: ImageVector,
+    color: Color,
+    onClick: () -> Unit
+) {
+    Surface(
+        onClick = onClick,
+        modifier = Modifier
+            .size(100.dp, 120.dp),
+        shape = RoundedCornerShape(24.dp),
+        color = SurfaceDark,
+        tonalElevation = 2.dp
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Icon(icon, contentDescription = title, tint = color, modifier = Modifier.size(32.dp))
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(title, style = Typography.labelLarge, color = TextWhite)
         }
     }
 }
@@ -178,180 +325,21 @@ fun EmptyPetCard(onClickAddPet: () -> Unit) {
             .height(140.dp)
             .clickable { onClickAddPet() },
         shape = RoundedCornerShape(28.dp),
-        tonalElevation = 4.dp,
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-        border = androidx.compose.foundation.BorderStroke(1.dp, PrimaryColor.copy(alpha = 0.3f))
+        color = SurfaceDark.copy(alpha = 0.3f),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Primary2026.copy(alpha = 0.2f))
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Icon(Icons.Default.AddAPhoto, contentDescription = null, tint = PrimaryColor, modifier = Modifier.size(32.dp))
+            Icon(Icons.Default.AddAPhoto, contentDescription = null, tint = Primary2026, modifier = Modifier.size(32.dp))
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Add your first pet to see details here.",
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-                color = PrimaryColor
+                text = "Add your first pet",
+                style = Typography.titleMedium,
+                color = TextWhite
             )
-        }
-    }
-}
-
-@Composable
-fun QuickInfoSection() {
-    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        InfoRow(Icons.Rounded.Favorite, "Heart Rate", "85 bpm", SecondaryGradientColors)
-        InfoRow(Icons.Rounded.Timer, "Active Time", "45 mins", PrimaryGradientColors)
-        InfoRow(Icons.Rounded.Scale, "Weight", "12.5 kg", AccentGradientColors)
-    }
-}
-
-@Composable
-fun InfoRow(icon: ImageVector, label: String, value: String, colors: List<Color>) {
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        tonalElevation = 2.dp,
-        color = MaterialTheme.colorScheme.surface
-    ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(Brush.linearGradient(colors), CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp))
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-            Text(value, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-        }
-    }
-}
-
-@Composable
-fun LiveGradientCard(
-    title: String,
-    subtitle: String,
-    progress: Float,
-    colors: List<Color>
-) {
-    val infiniteTransition = rememberInfiniteTransition(label = "gradient")
-    val offset by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(10000, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "offset"
-    )
-
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(140.dp),
-        shape = RoundedCornerShape(28.dp),
-        tonalElevation = 8.dp
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .drawBehind {
-                    drawRect(
-                        brush = Brush.linearGradient(
-                            colors = colors,
-                            start = Offset(offset, offset),
-                            end = Offset(offset + 500f, offset + 500f)
-                        )
-                    )
-                }
-                .padding(24.dp)
-        ) {
-            Column(modifier = Modifier.align(Alignment.TopStart)) {
-                Text(title, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                Text(subtitle, color = Color.White.copy(alpha = 0.8f), fontSize = 14.sp)
-            }
-            
-            CircularProgressIndicator(
-                progress = { progress },
-                modifier = Modifier
-                    .size(64.dp)
-                    .align(Alignment.CenterEnd),
-                color = Color.White,
-                strokeWidth = 6.dp,
-                trackColor = Color.White.copy(alpha = 0.2f)
-            )
-            
-            Text(
-                "${(progress * 100).toInt()}%",
-                modifier = Modifier.align(Alignment.CenterEnd).padding(end = 18.dp),
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold,
-                fontSize = 14.sp
-            )
-        }
-    }
-}
-
-@Composable
-fun AdvancedFeatureCard(
-    feature: HomeFeature,
-    onClick: () -> Unit
-) {
-    Surface(
-        onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(160.dp),
-        shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 2.dp,
-        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        Brush.linearGradient(feature.colors),
-                        RoundedCornerShape(14.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(feature.icon, contentDescription = null, tint = Color.White)
-            }
-            
-            Column {
-                Text(
-                    feature.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        "Explore",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                    Icon(
-                        Icons.Rounded.ChevronRight,
-                        contentDescription = null,
-                        modifier = Modifier.size(14.dp),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            }
         }
     }
 }

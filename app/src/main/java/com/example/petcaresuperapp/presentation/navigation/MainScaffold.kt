@@ -1,16 +1,27 @@
 package com.example.petcaresuperapp.presentation.navigation
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import kotlinx.coroutines.launch
+import com.example.petcaresuperapp.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,8 +52,21 @@ fun MainScaffold(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet {
-                Spacer(modifier = Modifier.height(16.dp))
+            ModalDrawerSheet(
+                drawerContainerColor = SurfaceDark,
+                drawerContentColor = TextWhite
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp)
+                ) {
+                    Text(
+                        "PetCare",
+                        style = Typography.headlineLarge,
+                        color = Primary2026
+                    )
+                }
                 drawerItems.forEach { item ->
                     NavigationDrawerItem(
                         icon = { Icon(item.icon, contentDescription = null) },
@@ -62,6 +86,13 @@ fun MainScaffold(
                                 }
                             }
                         },
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedContainerColor = Primary2026.copy(alpha = 0.2f),
+                            selectedIconColor = Primary2026,
+                            selectedTextColor = Primary2026,
+                            unselectedIconColor = TextGray,
+                            unselectedTextColor = TextGray
+                        ),
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
                 }
@@ -72,55 +103,117 @@ fun MainScaffold(
             topBar = {
                 if (showTopBar) {
                     TopAppBar(
-                        title = { Text("PetCare") },
+                        title = { 
+                            Text(
+                                "PetCare", 
+                                fontWeight = FontWeight.Bold,
+                                color = TextWhite
+                            ) 
+                        },
                         navigationIcon = {
                             IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                                Icon(Icons.Default.Menu, contentDescription = "Menu")
+                                Icon(Icons.Default.Menu, contentDescription = "Menu", tint = TextWhite)
                             }
                         },
                         actions = {
                             IconButton(onClick = { navController.navigate(Screen.AiAssistant.route) }) {
-                                Icon(Icons.Rounded.AutoAwesome, contentDescription = "AI Assistant")
+                                Icon(Icons.Rounded.AutoAwesome, contentDescription = "AI Assistant", tint = Primary2026)
                             }
                             IconButton(onClick = { navController.navigate(Screen.Notifications.route) }) {
-                                Icon(Icons.Rounded.Notifications, contentDescription = "Notifications")
+                                Icon(Icons.Rounded.Notifications, contentDescription = "Notifications", tint = TextWhite)
                             }
-                        }
+                        },
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = BackgroundDark,
+                            titleContentColor = TextWhite
+                        )
                     )
                 }
             },
             bottomBar = {
-                NavigationBar {
+                NavigationBar(
+                    containerColor = SurfaceDark,
+                    tonalElevation = 8.dp,
+                    modifier = Modifier.clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                ) {
                     bottomNavItems.forEach { item ->
                         val selected = currentRoute == item.route
                         NavigationBarItem(
                             selected = selected,
                             onClick = {
-                                navController.navigate(item.route) {
-                                    popUpTo(Screen.Home.route) { saveState = true }
-                                    launchSingleTop = true
-                                    restoreState = true
+                                if (currentRoute != item.route) {
+                                    navController.navigate(item.route) {
+                                        popUpTo(Screen.Home.route) { saveState = true }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
                                 }
                             },
-                            icon = { Icon(item.icon, contentDescription = item.title) },
-                            label = { Text(item.title) }
+                            icon = {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Icon(
+                                        item.icon, 
+                                        contentDescription = item.title,
+                                        modifier = Modifier.size(if (selected) 26.dp else 24.dp),
+                                        tint = if (selected) Primary2026 else TextGray
+                                    )
+                                }
+                            },
+                            label = {
+                                AnimatedVisibility(
+                                    visible = selected,
+                                    enter = fadeIn() + expandVertically(),
+                                    exit = fadeOut() + shrinkVertically()
+                                ) {
+                                    Text(
+                                        item.title,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Medium,
+                                        color = if (selected) Primary2026 else TextGray
+                                    )
+                                }
+                            },
+                            colors = NavigationBarItemDefaults.colors(
+                                indicatorColor = Color.Transparent,
+                                selectedIconColor = Primary2026,
+                                unselectedIconColor = TextGray,
+                                selectedTextColor = Primary2026,
+                                unselectedTextColor = TextGray
+                            )
                         )
                     }
                 }
             },
             floatingActionButton = {
                 if (currentRoute == Screen.Home.route) {
+                    var pressed by remember { mutableStateOf(false) }
+                    val scale by animateFloatAsState(
+                        targetValue = if (pressed) 0.9f else 1f,
+                        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+                        label = "fabScale"
+                    )
+
                     FloatingActionButton(
-                        onClick = { navController.navigate(Screen.AddPet.route) },
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary
+                        onClick = { 
+                            navController.navigate(Screen.AddPet.route)
+                        },
+                        containerColor = Primary2026,
+                        contentColor = Color.White,
+                        shape = RoundedCornerShape(20.dp),
+                        modifier = Modifier
+                            .scale(scale)
+                            .padding(bottom = 8.dp),
+                        elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp)
                     ) {
-                        Icon(Icons.Rounded.Add, contentDescription = "Add Pet")
+                        Icon(Icons.Rounded.Add, contentDescription = "Add Pet", modifier = Modifier.size(28.dp))
                     }
                 }
-            }
+            },
+            containerColor = BackgroundDark
         ) { paddingValues ->
-            content(paddingValues)
+            Box(modifier = Modifier.fillMaxSize()) {
+                content(paddingValues)
+            }
         }
     }
 }

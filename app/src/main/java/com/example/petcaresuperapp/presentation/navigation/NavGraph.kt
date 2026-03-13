@@ -1,5 +1,6 @@
 package com.example.petcaresuperapp.presentation.navigation
 
+import androidx.compose.animation.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -59,6 +60,8 @@ sealed class Screen(val route: String) {
     object ReportPet : Screen("report_pet")
     object Chat : Screen("chat")
     object RescueForum : Screen("rescue_forum")
+    object CreatePost : Screen("create_post")
+    object SocialComments : Screen("comment_screen/{postId}")
     
     // Adoption
     object Adoption : Screen("adoption")
@@ -117,7 +120,19 @@ data class DrawerItem(
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Splash.route,
+        enterTransition = {
+            slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn()
+        },
+        exitTransition = {
+            slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
+        },
+        popEnterTransition = {
+            slideInHorizontally(initialOffsetX = { -1000 }) + fadeIn()
+        },
+        popExitTransition = {
+            slideOutHorizontally(targetOffsetX = { 1000 }) + fadeOut()
+        }
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(onNext = { destination ->
@@ -251,7 +266,7 @@ fun SetupNavGraph(navController: NavHostController) {
         // Community Routes
         composable(route = Screen.Community.route) { 
             MainScaffold(navController = navController) { padding ->
-                CommunityFeedScreen(navController) 
+                CommunityFeedScreen(navController, padding) 
             }
         }
         composable(route = Screen.LostFound.route) { 
@@ -272,6 +287,20 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.RescueForum.route) { 
             MainScaffold(navController = navController) { padding ->
                 RescueForumScreen(navController) 
+            }
+        }
+        composable(route = Screen.CreatePost.route) {
+            MainScaffold(navController = navController) { padding ->
+                CreatePostScreen(navController)
+            }
+        }
+        composable(
+            route = Screen.SocialComments.route,
+            arguments = listOf(navArgument("postId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
+            MainScaffold(navController = navController) { padding ->
+                CommentScreen(navController, postId, padding)
             }
         }
         

@@ -16,42 +16,37 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = PrimaryLight,
-    onPrimary = Color.Black,
-    primaryContainer = PrimaryDark,
-    onPrimaryContainer = PrimaryLight,
-    secondary = SecondaryLight,
+private val ModernDarkColorScheme = darkColorScheme(
+    primary = Primary2026,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFF166534),
+    onPrimaryContainer = Color(0xFFDCFCE7),
+    secondary = Secondary2026,
     onSecondary = Color.Black,
-    tertiary = AccentLight,
-    onTertiary = Color.Black,
-    background = DarkBackground,
-    surface = DarkSurface,
-    onBackground = DarkOnSurface,
-    onSurface = DarkOnSurface,
-    error = Color(0xFFCF6679)
+    surface = SurfaceDark,
+    onSurface = TextWhite,
+    background = BackgroundDark,
+    onBackground = TextWhite,
+    surfaceVariant = SurfaceVariantDark,
+    onSurfaceVariant = TextGray,
+    error = Error2026,
+    outline = TextGray
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = PrimaryMain,
+// We want to favor the modern dark theme, but will keep a refined light version if needed.
+// However, the user explicitly asked for #0F172A as background.
+private val ModernLightColorScheme = lightColorScheme(
+    primary = Primary2026,
     onPrimary = Color.White,
-    primaryContainer = PrimaryContainer,
-    onPrimaryContainer = PrimaryDark,
-    secondary = SecondaryMain,
-    onSecondary = Color.White,
-    tertiary = AccentMain,
-    onTertiary = Color.White,
-    background = LightBackground,
-    surface = LightSurface,
-    onBackground = LightOnSurface,
-    onSurface = LightOnSurface,
-    error = Color(0xFFB00020)
+    secondary = Secondary2026,
+    background = Color(0xFFF8FAFC),
+    surface = Color.White,
+    onSurface = Color(0xFF0F172A)
 )
 
 @Composable
 fun PetCareSuperAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
+    darkTheme: Boolean = true, // Default to true as per "premium dark elegant background" requirement
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -60,8 +55,8 @@ fun PetCareSuperAppTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> ModernDarkColorScheme
+        else -> ModernLightColorScheme
     }
 
     val view = LocalView.current
@@ -69,6 +64,7 @@ fun PetCareSuperAppTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.background.toArgb()
+            window.navigationBarColor = colorScheme.background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
