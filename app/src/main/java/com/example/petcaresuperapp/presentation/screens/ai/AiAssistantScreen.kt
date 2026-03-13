@@ -64,28 +64,43 @@ fun AiAssistantScreen(navController: NavController) {
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 20.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp)
             ) {
                 item {
                     AiHeroSection()
                 }
                 item {
-                    Text("AI Tools", fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(vertical = 8.dp))
+                    Text(
+                        "AI Tools",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary
+                    )
                 }
                 items(aiFeatures) { feature ->
                     AiToolCard(feature)
                 }
                 item {
+                    Text(
+                        "Recent Chat",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+                item {
                     AiChatPreview()
                 }
-                item { Spacer(modifier = Modifier.height(20.dp)) }
             }
 
             // Chat Input Area
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                color = SurfaceColor,
-                shadowElevation = 8.dp
+                color = Color.White,
+                shadowElevation = 8.dp,
+                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
             ) {
                 Row(
                     modifier = Modifier
@@ -97,12 +112,15 @@ fun AiAssistantScreen(navController: NavController) {
                         value = chatMessage,
                         onValueChange = { chatMessage = it },
                         modifier = Modifier.weight(1f),
-                        placeholder = { Text("Ask AI anything about your pet...") },
+                        placeholder = { Text("Ask AI anything...", fontSize = 14.sp) },
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             unfocusedBorderColor = DividerColor,
-                            focusedBorderColor = PrimaryColor
-                        )
+                            focusedBorderColor = PrimaryColor,
+                            unfocusedContainerColor = BackgroundColor,
+                            focusedContainerColor = BackgroundColor
+                        ),
+                        maxLines = 1
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     IconButton(

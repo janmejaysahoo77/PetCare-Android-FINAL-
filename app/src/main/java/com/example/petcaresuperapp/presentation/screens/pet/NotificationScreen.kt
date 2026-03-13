@@ -22,29 +22,29 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.petcaresuperapp.ui.theme.*
 
-data class Reminder(
+data class AppNotification(
     val title: String,
     val time: String,
     val date: String,
-    val type: String, // "Medicine", "Vaccine", "Walk"
+    val type: String,
     val icon: ImageVector,
     val color: Color
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RemindersScreen(navController: NavController) {
-    val reminders = listOf(
-        Reminder("Heartworm Pill", "08:00 AM", "Every Month", "Medicine", Icons.Default.Medication, AccentColor),
-        Reminder("Evening Walk", "06:30 PM", "Daily", "Activity", Icons.Default.DirectionsWalk, SuccessGradStart),
-        Reminder("Rabies Vaccine", "10:00 AM", "15 Oct 2024", "Vaccine", Icons.Default.Vaccines, PrimaryColor),
-        Reminder("Deworming", "09:00 AM", "20 Oct 2024", "Medicine", Icons.Default.Medication, SecondaryColor)
+fun NotificationScreen(navController: NavController) {
+    val notifications = listOf(
+        AppNotification("Heartworm Pill Reminder", "08:00 AM", "Today", "Health", Icons.Default.Medication, AccentColor),
+        AppNotification("Evening Walk", "06:30 PM", "Daily", "Activity", Icons.Default.DirectionsWalk, SuccessGradStart),
+        AppNotification("Rabies Vaccine Appointment", "10:00 AM", "15 Oct 2024", "Health", Icons.Default.Vaccines, PrimaryColor),
+        AppNotification("Deworming Reminder", "09:00 AM", "20 Oct 2024", "Health", Icons.Default.Medication, SecondaryColor)
     )
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Reminders", fontWeight = FontWeight.Bold) },
+                title = { Text("Notifications", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
@@ -60,7 +60,7 @@ fun RemindersScreen(navController: NavController) {
                 containerColor = PrimaryColor,
                 contentColor = Color.White
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Reminder")
+                Icon(Icons.Default.Add, contentDescription = "Add Notification")
             }
         }
     ) { padding ->
@@ -69,30 +69,62 @@ fun RemindersScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(padding)
                 .padding(horizontal = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
             contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp)
         ) {
             item {
+                NotificationHeader()
+            }
+            item {
                 Text(
-                    "Upcoming Tasks",
+                    "Recent Updates",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
             }
-            items(reminders) { reminder ->
-                ReminderCard(reminder)
+            items(notifications) { notification ->
+                NotificationTile(notification)
             }
         }
     }
 }
 
 @Composable
-fun ReminderCard(reminder: Reminder) {
+fun NotificationHeader() {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp),
+        color = Color.White,
+        shadowElevation = 2.dp
+    ) {
+        Row(
+            modifier = Modifier.padding(24.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(PrimaryColor.copy(alpha = 0.1f), CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(Icons.Default.NotificationsActive, contentDescription = null, tint = PrimaryColor)
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Column {
+                Text("All Caught Up!", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = TextPrimary)
+                Text("You have 4 active notifications.", fontSize = 12.sp, color = TextSecondary)
+            }
+        }
+    }
+}
+
+@Composable
+fun NotificationTile(notification: AppNotification) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
-        color = SurfaceColor,
+        color = Color.White,
         shadowElevation = 2.dp
     ) {
         Row(
@@ -101,26 +133,19 @@ fun ReminderCard(reminder: Reminder) {
         ) {
             Box(
                 modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(reminder.color.copy(alpha = 0.1f)),
+                    .size(52.dp)
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(notification.color.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(reminder.icon, contentDescription = null, tint = reminder.color)
+                Icon(notification.icon, contentDescription = null, tint = notification.color)
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(reminder.title, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = TextPrimary)
-                Text("${reminder.date} • ${reminder.time}", fontSize = 12.sp, color = TextSecondary)
+                Text(notification.title, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = TextPrimary)
+                Text("${notification.date} • ${notification.time}", fontSize = 12.sp, color = TextSecondary)
             }
-            Switch(
-                checked = true,
-                onCheckedChange = { /* TODO */ },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = Color.White,
-                    checkedTrackColor = reminder.color
-                )
-            )
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = TextGrey)
         }
     }
 }

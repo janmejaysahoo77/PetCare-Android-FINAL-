@@ -22,6 +22,10 @@ import com.example.petcaresuperapp.presentation.screens.education.*
 import com.example.petcaresuperapp.presentation.screens.store.*
 import com.example.petcaresuperapp.presentation.screens.profile.*
 import com.example.petcaresuperapp.presentation.screens.discovery.*
+import com.example.petcaresuperapp.presentation.ui.AdoptPetScreen
+import com.example.petcaresuperapp.presentation.ui.PetDetailsScreen
+import com.example.petcaresuperapp.presentation.ui.AdoptionRequestScreen
+import com.example.petcaresuperapp.presentation.ui.MyAdoptionRequestsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -33,7 +37,7 @@ sealed class Screen(val route: String) {
     // Pet Module
     object PetProfile : Screen("pet_profile")
     object HealthCard : Screen("health_card")
-    object Reminders : Screen("reminders")
+    object Notifications : Screen("notifications")
     object ActivityTracker : Screen("activity_tracker")
     object AddPet : Screen("add_pet")
     object GpsTracking : Screen("gps_tracking")
@@ -62,6 +66,12 @@ sealed class Screen(val route: String) {
     object AdoptionApplication : Screen("adoption_application/{petName}")
     object SuccessStories : Screen("success_stories")
     
+    // New Shelter Integration Routes
+    object AdoptPetsList : Screen("adopt_pets")
+    object PetDetailsNew : Screen("pet_details/{petId}")
+    object AdoptionRequestNew : Screen("adoption_request/{petId}/{petName}")
+    object MyRequests : Screen("my_requests")
+    
     // Dashboards
     object VetDashboard : Screen("vet_dashboard")
     object ShelterDashboard : Screen("shelter_dashboard")
@@ -82,10 +92,23 @@ sealed class Screen(val route: String) {
     
     // Profile
     object UserProfile : Screen("user_profile")
+    object Settings : Screen("settings")
     
     // Discovery
     object DiscoveryMap : Screen("discovery_map")
 }
+
+data class BottomNavItem(
+    val title: String,
+    val route: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+)
+
+data class DrawerItem(
+    val title: String,
+    val route: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+)
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -132,78 +155,256 @@ fun SetupNavGraph(navController: NavHostController) {
             )
         }
         composable(route = Screen.Home.route) {
-            HomeScreen(navController = navController)
+            MainScaffold(navController = navController) { padding ->
+                HomeScreen(navController = navController, paddingValues = padding)
+            }
         }
         
         // Pet Routes
-        composable(route = Screen.PetProfile.route) { PetProfileScreen(navController) }
-        composable(route = Screen.AddPet.route) { AddPetScreen(navController) }
-        composable(route = Screen.HealthCard.route) { HealthCardScreen(navController) }
-        composable(route = Screen.Reminders.route) { RemindersScreen(navController) }
-        composable(route = Screen.ActivityTracker.route) { ActivityTrackerScreen(navController) }
-        composable(route = Screen.GpsTracking.route) { GpsTrackingScreen(navController) }
-        composable(route = Screen.BlockchainIdentity.route) { BlockchainIdentityScreen(navController) }
-        composable(route = Screen.HealthAnalytics.route) { HealthAnalyticsScreen(navController) }
+        composable(route = Screen.PetProfile.route) { 
+            MainScaffold(navController = navController) { padding ->
+                PetProfileScreen(navController) 
+            }
+        }
+        composable(route = Screen.AddPet.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                AddPetScreen(navController) 
+            }
+        }
+        composable(route = Screen.HealthCard.route) { 
+            MainScaffold(navController = navController) { padding ->
+                HealthCardScreen(navController) 
+            }
+        }
+        composable(route = Screen.Notifications.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                NotificationScreen(navController) 
+            }
+        }
+        composable(route = Screen.ActivityTracker.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                ActivityTrackerScreen(navController) 
+            }
+        }
+        composable(route = Screen.GpsTracking.route) { 
+            MainScaffold(navController = navController) { padding ->
+                GpsTrackingScreen(navController) 
+            }
+        }
+        composable(route = Screen.BlockchainIdentity.route) { 
+            MainScaffold(navController = navController) { padding ->
+                BlockchainIdentityScreen(navController) 
+            }
+        }
+        composable(route = Screen.HealthAnalytics.route) { 
+            MainScaffold(navController = navController) { padding ->
+                HealthAnalyticsScreen(navController) 
+            }
+        }
         
         // Vet Routes
-        composable(route = Screen.VetSearch.route) { VetSearchScreen(navController) }
+        composable(route = Screen.VetSearch.route) { 
+            MainScaffold(navController = navController) { padding ->
+                VetSearchScreen(navController) 
+            }
+        }
         composable(
             route = Screen.VetDetail.route,
             arguments = listOf(navArgument("vetId") { type = NavType.StringType })
         ) { backStackEntry ->
-            VetDetailScreen(navController, backStackEntry.arguments?.getString("vetId"))
+            MainScaffold(navController = navController) { padding ->
+                VetDetailScreen(navController, backStackEntry.arguments?.getString("vetId"))
+            }
         }
         composable(
             route = Screen.AppointmentBooking.route,
             arguments = listOf(navArgument("vetId") { type = NavType.StringType })
         ) { backStackEntry ->
-            AppointmentBookingScreen(navController, backStackEntry.arguments?.getString("vetId"))
+            MainScaffold(navController = navController) { padding ->
+                AppointmentBookingScreen(navController, backStackEntry.arguments?.getString("vetId"))
+            }
         }
-        composable(route = Screen.MyAppointments.route) { MyAppointmentsScreen(navController) }
-        composable(route = Screen.Telemedicine.route) { TelemedicineScreen(navController) }
-        composable(route = Screen.VideoCall.route) { VideoCallScreen(navController) }
-        composable(route = Screen.QrScanner.route) { QrScannerScreen(navController) }
+        composable(route = Screen.MyAppointments.route) { 
+            MainScaffold(navController = navController) { padding ->
+                MyAppointmentsScreen(navController) 
+            }
+        }
+        composable(route = Screen.Telemedicine.route) { 
+            MainScaffold(navController = navController) { padding ->
+                TelemedicineScreen(navController) 
+            }
+        }
+        composable(route = Screen.VideoCall.route) { 
+            MainScaffold(navController = navController) { padding ->
+                VideoCallScreen(navController) 
+            }
+        }
+        composable(route = Screen.QrScanner.route) { 
+            MainScaffold(navController = navController) { padding ->
+                QrScannerScreen(navController) 
+            }
+        }
         
         // Community Routes
-        composable(route = Screen.Community.route) { CommunityFeedScreen(navController) }
-        composable(route = Screen.LostFound.route) { LostFoundScreen(navController) }
-        composable(route = Screen.ReportPet.route) { ReportPetScreen(navController) }
-        composable(route = Screen.Chat.route) { ChatScreen(navController) }
-        composable(route = Screen.RescueForum.route) { RescueForumScreen(navController) }
+        composable(route = Screen.Community.route) { 
+            MainScaffold(navController = navController) { padding ->
+                CommunityFeedScreen(navController) 
+            }
+        }
+        composable(route = Screen.LostFound.route) { 
+            MainScaffold(navController = navController) { padding ->
+                LostFoundScreen(navController) 
+            }
+        }
+        composable(route = Screen.ReportPet.route) { 
+            MainScaffold(navController = navController) { padding ->
+                ReportPetScreen(navController) 
+            }
+        }
+        composable(route = Screen.Chat.route) { 
+            MainScaffold(navController = navController) { padding ->
+                ChatScreen(navController) 
+            }
+        }
+        composable(route = Screen.RescueForum.route) { 
+            MainScaffold(navController = navController) { padding ->
+                RescueForumScreen(navController) 
+            }
+        }
         
         // Adoption Routes
-        composable(route = Screen.Adoption.route) { AdoptionListScreen(navController) }
+        composable(route = Screen.Adoption.route) { 
+            MainScaffold(navController = navController) { padding ->
+                AdoptionListScreen(navController) 
+            }
+        }
         composable(
             route = Screen.AdoptionDetail.route,
             arguments = listOf(navArgument("petId") { type = NavType.StringType })
         ) { backStackEntry ->
-            AdoptionDetailScreen(navController, backStackEntry.arguments?.getString("petId"))
+            MainScaffold(navController = navController) { padding ->
+                AdoptionDetailScreen(navController, backStackEntry.arguments?.getString("petId"))
+            }
         }
         composable(
             route = Screen.AdoptionApplication.route,
             arguments = listOf(navArgument("petName") { type = NavType.StringType })
         ) { backStackEntry ->
-            AdoptionApplicationScreen(navController, backStackEntry.arguments?.getString("petName") ?: "")
+            MainScaffold(navController = navController) { padding ->
+                AdoptionApplicationScreen(navController, backStackEntry.arguments?.getString("petName") ?: "")
+            }
         }
-        composable(route = Screen.SuccessStories.route) { SuccessStoriesScreen(navController) }
+        composable(route = Screen.SuccessStories.route) { 
+            MainScaffold(navController = navController) { padding ->
+                SuccessStoriesScreen(navController) 
+            }
+        }
+        
+        // New Shelter Integration Routes
+        composable(route = Screen.AdoptPetsList.route) {
+            MainScaffold(navController = navController) { padding ->
+                AdoptPetScreen(
+                    onPetClick = { petId ->
+                        navController.navigate("pet_details/$petId")
+                    }
+                )
+            }
+        }
+        composable(
+            route = Screen.PetDetailsNew.route,
+            arguments = listOf(navArgument("petId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val petId = backStackEntry.arguments?.getString("petId") ?: return@composable
+            PetDetailsScreen(
+                petId = petId,
+                onBackClick = { navController.popBackStack() },
+                onAdoptClick = { id, name ->
+                    navController.navigate("adoption_request/$id/$name")
+                }
+            )
+        }
+        composable(
+            route = Screen.AdoptionRequestNew.route,
+            arguments = listOf(
+                navArgument("petId") { type = NavType.StringType },
+                navArgument("petName") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val petId = backStackEntry.arguments?.getString("petId") ?: return@composable
+            val petName = backStackEntry.arguments?.getString("petName") ?: return@composable
+            AdoptionRequestScreen(
+                petId = petId,
+                petName = petName,
+                onBackClick = { navController.popBackStack() },
+                onSubmitSuccess = { navController.navigate(Screen.MyRequests.route) }
+            )
+        }
+        composable(route = Screen.MyRequests.route) {
+            MyAdoptionRequestsScreen(
+                onBackClick = { navController.popBackStack() }
+            )
+        }
 
         // Dashboard Routes
-        composable(route = Screen.VetDashboard.route) { VetDashboardScreen(navController) }
-        composable(route = Screen.ShelterDashboard.route) { ShelterDashboardScreen(navController) }
-        composable(route = Screen.StoreDashboard.route) { StoreDashboardScreen(navController) }
+        composable(route = Screen.VetDashboard.route) { 
+            MainScaffold(navController = navController) { padding ->
+                VetDashboardScreen(navController) 
+            }
+        }
+        composable(route = Screen.ShelterDashboard.route) { 
+            MainScaffold(navController = navController) { padding ->
+                ShelterDashboardScreen(navController) 
+            }
+        }
+        composable(route = Screen.StoreDashboard.route) { 
+            MainScaffold(navController = navController) { padding ->
+                StoreDashboardScreen(navController) 
+            }
+        }
         composable(
             route = Screen.AdoptionRequestDetail.route,
             arguments = listOf(navArgument("requestId") { type = NavType.StringType })
         ) { backStackEntry ->
-            AdoptionRequestDetailScreen(navController, backStackEntry.arguments?.getString("requestId"))
+            MainScaffold(navController = navController) { padding ->
+                AdoptionRequestDetailScreen(navController, backStackEntry.arguments?.getString("requestId"))
+            }
         }
 
         // Other Routes
-        composable(route = Screen.AiAssistant.route) { AiAssistantScreen(navController) }
-        composable(route = Screen.EmergencySos.route) { EmergencySosScreen(navController) }
-        composable(route = Screen.Education.route) { EducationScreen(navController) }
-        composable(route = Screen.Marketplace.route) { MarketplaceScreen(navController) }
-        composable(route = Screen.UserProfile.route) { UserProfileScreen(navController) }
-        composable(route = Screen.DiscoveryMap.route) { DiscoveryMapScreen(navController) }
+        composable(route = Screen.AiAssistant.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                AiAssistantScreen(navController) 
+            }
+        }
+        composable(route = Screen.EmergencySos.route) { 
+            MainScaffold(navController = navController) { padding ->
+                EmergencySosScreen(navController) 
+            }
+        }
+        composable(route = Screen.Education.route) { 
+            MainScaffold(navController = navController) { padding ->
+                EducationScreen(navController) 
+            }
+        }
+        composable(route = Screen.Marketplace.route) { 
+            MainScaffold(navController = navController) { padding ->
+                MarketplaceScreen(navController) 
+            }
+        }
+        composable(route = Screen.UserProfile.route) { 
+            MainScaffold(navController = navController) { padding ->
+                UserProfileScreen(navController) 
+            }
+        }
+        composable(route = Screen.Settings.route) { 
+            MainScaffold(navController = navController) { padding ->
+                SettingsScreen(navController) 
+            }
+        }
+        composable(route = Screen.DiscoveryMap.route) { 
+            MainScaffold(navController = navController) { padding ->
+                DiscoveryMapScreen(navController) 
+            }
+        }
     }
 }

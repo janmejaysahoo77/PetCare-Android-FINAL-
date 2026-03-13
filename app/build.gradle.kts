@@ -57,6 +57,7 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-analytics")
 
     // Hilt
@@ -74,6 +75,14 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.gson)
+
+    // Coil Image Loading
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // QR Code Scanner & Generator
+    implementation(libs.play.services.code.scanner)
+    implementation(libs.zxing)
+    implementation(libs.cloudinary.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
