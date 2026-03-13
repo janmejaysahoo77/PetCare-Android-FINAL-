@@ -89,6 +89,9 @@ sealed class Screen(val route: String) {
     
     // Marketplace
     object Marketplace : Screen("marketplace")
+    object ProductDetail : Screen("product_detail/{productId}")
+    object Cart : Screen("cart")
+    object MyOrders : Screen("my_orders")
     
     // Profile
     object UserProfile : Screen("user_profile")
@@ -387,8 +390,29 @@ fun SetupNavGraph(navController: NavHostController) {
             }
         }
         composable(route = Screen.Marketplace.route) { 
-            MainScaffold(navController = navController) { padding ->
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
                 MarketplaceScreen(navController) 
+            }
+        }
+        composable(
+            route = Screen.ProductDetail.route,
+            arguments = listOf(navArgument("productId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                ProductDetailScreen(
+                    navController = navController,
+                    productId = backStackEntry.arguments?.getString("productId") ?: ""
+                )
+            }
+        }
+        composable(route = Screen.Cart.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                CartScreen(navController) 
+            }
+        }
+        composable(route = Screen.MyOrders.route) { 
+            MainScaffold(navController = navController, showTopBar = false) { padding ->
+                MyOrdersScreen(navController) 
             }
         }
         composable(route = Screen.UserProfile.route) { 

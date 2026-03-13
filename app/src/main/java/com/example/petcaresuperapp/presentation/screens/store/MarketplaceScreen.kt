@@ -16,30 +16,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import com.example.petcaresuperapp.domain.models.StoreProduct
 import com.example.petcaresuperapp.ui.theme.*
-
-@Immutable
-data class MarketProduct(
-    val name: String,
-    val price: String,
-    val rating: String,
-    val category: String,
-    val color: Color
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MarketplaceScreen(navController: NavController) {
-    val products = listOf(
-        MarketProduct("Royal Canin Dog Food", "$85.00", "4.9", "Food", PrimaryColor),
-        MarketProduct("Interactive Cat Toy", "$12.50", "4.7", "Toys", SecondaryColor),
-        MarketProduct("Pet Grooming Kit", "$45.00", "4.8", "Care", SuccessGradStart),
-        MarketProduct("Waterproof Dog Collar", "$18.00", "4.5", "Accessories", AccentColor)
-    )
+fun MarketplaceScreen(
+    navController: NavController,
+    viewModel: MarketplaceViewModel = hiltViewModel()
+) {
+    val products by viewModel.products.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
 
     Scaffold(
         topBar = {
@@ -51,7 +45,7 @@ fun MarketplaceScreen(navController: NavController) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO */ }) {
+                    IconButton(onClick = { navController.navigate("cart") }) {
                         Icon(Icons.Default.ShoppingCart, contentDescription = null, tint = PrimaryColor)
                     }
                 },
@@ -77,7 +71,10 @@ fun MarketplaceScreen(navController: NavController) {
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(16.dp),
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                    colors = OutlinedTextFieldDefaults.colors(unfocusedContainerColor = Color.White, focusedContainerColor = Color.White)
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.White, 
+                        focusedContainerColor = Color.White
+                    )
                 )
                 IconButton(
                     onClick = { /* TODO */ },
@@ -87,53 +84,23 @@ fun MarketplaceScreen(navController: NavController) {
                 }
             }
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(bottom = 24.dp)
-            ) {
-                items(products) { product ->
-                    ProductItemCard(product)
+            if (isLoading) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = PrimaryColor)
                 }
-            }
-        }
-    }
-}
-
-@Composable
-fun ProductItemCard(product: MarketProduct) {
-    Surface(
-        modifier = Modifier.fillMaxWidth().clickable { /* TODO */ },
-        shape = RoundedCornerShape(24.dp),
-        color = Color.White,
-        shadowElevation = 2.dp
-    ) {
-        Column {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(130.dp)
-                    .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                    .background(product.color.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(Icons.Default.ShoppingBag, contentDescription = null, tint = product.color, modifier = Modifier.size(50.dp))
-            }
-            Column(modifier = Modifier.padding(12.dp)) {
-                Text(product.category, fontSize = 10.sp, color = TextSecondary, fontWeight = FontWeight.Bold)
-                Text(product.name, fontWeight = FontWeight.Bold, fontSize = 14.sp, maxLines = 1)
-                Spacer(modifier = Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+            } else {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    contentPadding = PaddingValues(bottom = 24.dp)
                 ) {
-                    Text(product.price, fontWeight = FontWeight.Black, color = PrimaryColor, fontSize = 16.sp)
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Star, contentDescription = null, tint = Color(0xFFFFB300), modifier = Modifier.size(14.dp))
-                        Text(product.rating, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    items(products) { product ->
+                        ProductItemCard(
+                            product = product,
+                            onClick = { navController.navigate("product_detail/${product.id}") }
+                        )
                     }
                 }
             }
@@ -141,4 +108,63 @@ fun ProductItemCard(product: MarketProduct) {
     }
 }
 
-annotation class Immutable
+@Composable
+fun ProductItemCard(product: StoreProduct, onClick: () -> Unit) {
+    Surface(
+        modifier = Modifier.fillMaxWidth().clickable { onClick() },
+        shape = RoundedCornerShape(24.dp),
+        color = Color.White,
+        shadowElevation = 2.dp
+    ) {
+        Column {
+            if (product.imageUrl.isNotEmpty()) {
+                AsyncImage(
+                    model = product.imageUrl,
+                    contentDescription = product.name,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(130.dp)
+                        .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                        .background(Color.LightGray)
+                )
+            } else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(130.dp)
+                        .clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                        .background(PrimaryColor.copy(alpha = 0.1f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(Icons.Default.ShoppingBag, contentDescription = null, tint = PrimaryColor, modifier = Modifier.size(50.dp))
+                }
+            }
+            
+            Column(modifier = Modifier.padding(12.dp)) {
+                Text(product.category.uppercase(), fontSize = 10.sp, color = TextSecondary, fontWeight = FontWeight.Bold)
+                Text(product.name, fontWeight = FontWeight.Bold, fontSize = 14.sp, maxLines = 1)
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("$${product.price}", fontWeight = FontWeight.Black, color = PrimaryColor, fontSize = 16.sp)
+                    Surface(
+                        color = if (product.stock > 0) SuccessGradStart.copy(alpha = 0.1f) else Color.Red.copy(alpha = 0.1f),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            if (product.stock > 0) "Stock: ${product.stock}" else "Out of stock",
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = if (product.stock > 0) SuccessGradStart else Color.Red
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

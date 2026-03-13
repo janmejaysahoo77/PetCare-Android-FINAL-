@@ -52,26 +52,38 @@ class HomeViewModel @Inject constructor(
                 // Fetch Latest Pet
                 val petQuerySnapshot = firestore.collection("petslist")
                     .whereEqualTo("userId", userId)
-                    .orderBy("createdAt", Query.Direction.DESCENDING)
-                    .limit(1)
                     .get()
                     .await()
 
                 if (!petQuerySnapshot.isEmpty) {
-                    val latestPet = petQuerySnapshot.documents.first()
-                    val pName = latestPet.getString("petName") ?: "Pet"
-                    val pDesc = latestPet.getString("breed") ?: ""
-                    val pImg = latestPet.getString("imageUrl") ?: ""
-                    
-                    _uiState.update {
-                        it.copy(
-                            userName = fetchedUserName,
-                            petName = pName,
-                            petDescription = pDesc,
-                            petImageUrl = pImg,
-                            hasPet = true,
-                            isLoading = false
-                        )
+                    // Sort locally to avoid needing a composite index in Firestore
+                    val latestPet = petQuerySnapshot.documents.maxByOrNull {
+                        it.getTimestamp("createdAt")?.seconds ?: 0L
+                    }
+
+                    if (latestPet != null) {
+                        val pName = latestPet.getString("petName") ?: "Pet"
+                        val pDesc = latestPet.getString("breed") ?: ""
+                        val pImg = latestPet.getString("imageUrl") ?: ""
+                        
+                        _uiState.update {
+                            it.copy(
+                                userName = fetchedUserName,
+                                petName = pName,
+                                petDescription = pDesc,
+                                petImageUrl = pImg,
+                                hasPet = true,
+                                isLoading = false
+                            )
+                        }
+                    } else {
+                        _uiState.update {
+                            it.copy(
+                                userName = fetchedUserName,
+                                hasPet = false,
+                                isLoading = false
+                            )
+                        }
                     }
                 } else {
                     _uiState.update {
@@ -83,6 +95,8 @@ class HomeViewModel @Inject constructor(
                     }
                 }
             } catch (e: Exception) {
+                // Log the exception to see what's happening
+                e.printStackTrace()
                 // Handle error or fallback
                 _uiState.update { it.copy(isLoading = false) }
             }
