@@ -8,4 +8,19 @@ interface AuthRepository {
     fun signUp(name: String, email: String, password: String): Flow<Resource<Boolean>>
     fun logout(): Flow<Resource<Unit>>
     val currentUser: Flow<Boolean>
+
+    /**
+     * Syncs the user registration with the PetCare+ backend.
+     */
+    fun registerWithBackend(
+        name: String,
+        email: String,
+        phoneNumber: String? = null,
+        fcmToken: String? = null
+    ): Flow<Resource<Unit>>
+
+    /**
+     * Fetches the current user profile from the PetCare+ backend.
+     */
+    fun fetchUserProfile(): Flow<Resource<Unit>>
 }

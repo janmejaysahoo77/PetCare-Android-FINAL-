@@ -1,6 +1,8 @@
 package com.example.petcaresuperapp.data.repository
 
 import com.example.petcaresuperapp.core.util.Resource
+import com.example.petcaresuperapp.data.model.RegisterRequest
+import com.example.petcaresuperapp.data.remote.AuthApiService
 import com.example.petcaresuperapp.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.channels.awaitClose
@@ -11,14 +13,21 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth,
+    private val authApiService: AuthApiService
 ) : AuthRepository {
 
     override fun login(email: String, password: String): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
             firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            emit(Resource.Success(true))
+            // After Firebase login, verify with backend
+            val response = authApiService.getCurrentUser()
+            if (response.isSuccessful) {
+                emit(Resource.Success(true))
+            } else {
+                emit(Resource.Error("Backend verification failed: ${response.code()}"))
+            }
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
@@ -28,8 +37,17 @@ class AuthRepositoryImpl @Inject constructor(
         emit(Resource.Loading())
         try {
             firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            // Optionally update profile with name
-            emit(Resource.Success(true))
+            // After Firebase signup, register with backend
+            val registerRequest = RegisterRequest(
+                email = email,
+                displayName = name
+            )
+            val response = authApiService.registerUser(registerRequest)
+            if (response.isSuccessful) {
+                emit(Resource.Success(true))
+            } else {
+                emit(Resource.Error("Backend registration failed: ${response.code()}"))
+            }
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
@@ -52,6 +70,45 @@ class AuthRepositoryImpl @Inject constructor(
         firebaseAuth.addAuthStateListener(authStateListener)
         awaitClose {
             firebaseAuth.removeAuthStateListener(authStateListener)
+        }
+    }
+
+    override fun registerWithBackend(
+        name: String,
+        email: String,
+        phoneNumber: String?,
+        fcmToken: String?
+    ): Flow<Resource<Unit>> = flow {
+        emit(Resource.Loading())
+        try {
+            val request = RegisterRequest(
+                email = email,
+                displayName = name,
+                phoneNumber = phoneNumber,
+                fcmToken = fcmToken
+            )
+            val response = authApiService.registerUser(request)
+            if (response.isSuccessful) {
+                emit(Resource.Success(Unit))
+            } else {
+                emit(Resource.Error("Backend registration failed: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
+        }
+    }
+
+    override fun fetchUserProfile(): Flow<Resource<Unit>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = authApiService.getCurrentUser()
+            if (response.isSuccessful) {
+                emit(Resource.Success(Unit))
+            } else {
+                emit(Resource.Error("Failed to fetch profile: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
 }
