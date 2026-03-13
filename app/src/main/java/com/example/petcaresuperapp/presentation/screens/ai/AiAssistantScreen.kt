@@ -35,8 +35,8 @@ fun AiAssistantScreen(navController: NavController) {
     val aiFeatures = listOf(
         AiFeature("Symptom Checker", "Check pet symptoms with AI", Icons.Default.MedicalServices, PrimaryColor),
         AiFeature("Breed Detection", "Identify breed from photos", Icons.Default.CameraAlt, SecondaryColor),
-        AiFeature("Health Risk AI", "Predict potential health issues", Icons.Default.QueryStats, AccentColor),
-        AiFeature("Mood Analysis", "Understand your pet's emotions", Icons.Default.SentimentSatisfiedAlt, SuccessGradStart)
+        AiFeature("Health Risk AI", "Predict potential health issues", Icons.Default.QueryStats, Accent2026),
+        AiFeature("Mood Analysis", "Understand your pet's emotions", Icons.Default.SentimentSatisfiedAlt, Primary2026)
     )
 
     var chatMessage by remember { mutableStateOf("") }
@@ -115,7 +115,7 @@ fun AiAssistantScreen(navController: NavController) {
                         placeholder = { Text("Ask AI anything...", fontSize = 14.sp) },
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            unfocusedBorderColor = DividerColor,
+                            unfocusedBorderColor = SurfaceVariantDark,
                             focusedBorderColor = PrimaryColor,
                             unfocusedContainerColor = BackgroundColor,
                             focusedContainerColor = BackgroundColor
@@ -197,7 +197,7 @@ fun AiToolCard(feature: AiFeature) {
                 Text(feature.title, fontWeight = FontWeight.Bold, fontSize = 16.sp)
                 Text(feature.description, fontSize = 12.sp, color = TextSecondary)
             }
-            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = TextGrey)
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = TextGray)
         }
     }
 }

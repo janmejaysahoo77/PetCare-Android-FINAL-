@@ -60,7 +60,7 @@ fun AdoptionRequestDetailScreen(navController: NavController, requestId: String?
                         text = "Approve",
                         onClick = { /* TODO: Approve */ navController.popBackStack() },
                         modifier = Modifier.weight(1f),
-                        gradient = SuccessGradient
+                        gradient = PremiumGradient
                     )
                 }
             }
@@ -111,7 +111,7 @@ fun AdoptionRequestDetailScreen(navController: NavController, requestId: String?
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
                 color = Color.White,
-                border = androidx.compose.foundation.BorderStroke(1.dp, DividerColor)
+                border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceVariantDark)
             ) {
                 Text(
                     "I've always loved Huskies and have the space and time to provide Luna with the exercise she needs. My yard is secure, and I work from home so she won't be alone.",
@@ -126,7 +126,7 @@ fun AdoptionRequestDetailScreen(navController: NavController, requestId: String?
 
             Text("Documents", fontWeight = FontWeight.Bold, fontSize = 16.sp)
             Spacer(modifier = Modifier.height(12.dp))
-            DocumentRow("ID Proof (Verified)", Icons.Default.CheckCircle, SuccessGradStart)
+            DocumentRow("ID Proof (Verified)", Icons.Default.CheckCircle, Primary2026)
             DocumentRow("Home Photos", Icons.Default.Image, PrimaryColor)
         }
     }
@@ -155,14 +155,14 @@ fun DocumentRow(name: String, icon: androidx.compose.ui.graphics.vector.ImageVec
         modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
         shape = RoundedCornerShape(12.dp),
         color = Color.White,
-        border = androidx.compose.foundation.BorderStroke(1.dp, DividerColor)
+        border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceVariantDark)
     ) {
         Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(20.dp))
             Spacer(modifier = Modifier.width(12.dp))
             Text(name, fontSize = 14.sp, fontWeight = FontWeight.Medium)
             Spacer(modifier = Modifier.weight(1f))
-            Icon(Icons.Default.Visibility, contentDescription = null, tint = TextGrey, modifier = Modifier.size(18.dp))
+            Icon(Icons.Default.Visibility, contentDescription = null, tint = TextGray, modifier = Modifier.size(18.dp))
         }
     }
 }

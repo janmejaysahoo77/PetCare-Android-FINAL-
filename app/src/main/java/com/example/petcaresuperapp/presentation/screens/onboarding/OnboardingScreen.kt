@@ -50,19 +50,19 @@ fun OnboardingScreen(
             title = "Manage Your Pet Health",
             description = "Centralize all your pet's medical records and health history in one secure digital card.",
             image = R.drawable.onboaring1,
-            colors = listOf(PrimaryLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
+            colors = listOf(Primary2026.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         ),
         OnboardingData(
             title = "Vet Appointments",
             description = "Book appointments with top-rated veterinarians in your area with just a few taps.",
             image = R.drawable.onboaring2,
-            colors = listOf(SecondaryLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
+            colors = listOf(Secondary2026.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         ),
         OnboardingData(
             title = "Adoption & Community",
             description = "Connect with a caring community of pet lovers and find your perfect companion.",
             image = R.drawable.onboaring3,
-            colors = listOf(AccentLight.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
+            colors = listOf(Accent2026.copy(alpha = 0.2f), MaterialTheme.colorScheme.background)
         )
     )
 

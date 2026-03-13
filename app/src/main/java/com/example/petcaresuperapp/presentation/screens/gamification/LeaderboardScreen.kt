@@ -158,7 +158,7 @@ fun LeaderboardRow(user: LeaderboardUser) {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .background(brush = SecondaryGradient, alpha = 0.1f),
+                    .background(brush = GlassGradient, alpha = 0.1f),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(Icons.Default.Pets, contentDescription = null, tint = SecondaryColor, modifier = Modifier.size(20.dp))

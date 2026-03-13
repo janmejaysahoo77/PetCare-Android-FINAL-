@@ -150,7 +150,7 @@ fun AdoptionCard(pet: AdoptionPet) {
                     Icon(
                         imageVector = if (pet.isLiked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                         contentDescription = null,
-                        tint = AccentColor,
+                        tint = Accent2026,
                         modifier = Modifier.size(18.dp)
                     )
                 }

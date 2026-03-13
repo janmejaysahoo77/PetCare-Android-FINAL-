@@ -85,10 +85,10 @@ fun StoryCard(story: SuccessStory) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-                    .background(SuccessGradStart.copy(alpha = 0.1f)),
+                    .background(Primary2026.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(Icons.Default.Favorite, contentDescription = null, tint = SuccessGradStart, modifier = Modifier.size(60.dp))
+                Icon(Icons.Default.Favorite, contentDescription = null, tint = Primary2026, modifier = Modifier.size(60.dp))
             }
             Column(modifier = Modifier.padding(20.dp)) {
                 Row(
@@ -97,7 +97,7 @@ fun StoryCard(story: SuccessStory) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text("${story.petName} & ${story.ownerName}", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                    Text(story.date, fontSize = 12.sp, color = TextGrey)
+                    Text(story.date, fontSize = 12.sp, color = TextGray)
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(

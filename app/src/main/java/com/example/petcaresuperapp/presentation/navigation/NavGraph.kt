@@ -1,6 +1,7 @@
 package com.example.petcaresuperapp.presentation.navigation
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -122,16 +123,28 @@ fun SetupNavGraph(navController: NavHostController) {
         navController = navController,
         startDestination = Screen.Splash.route,
         enterTransition = {
-            slideInHorizontally(initialOffsetX = { 1000 }) + fadeIn()
+            slideInHorizontally(
+                initialOffsetX = { 1000 },
+                animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessMediumLow)
+            ) + fadeIn(animationSpec = tween(400))
         },
         exitTransition = {
-            slideOutHorizontally(targetOffsetX = { -1000 }) + fadeOut()
+            slideOutHorizontally(
+                targetOffsetX = { -1000 },
+                animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessMediumLow)
+            ) + fadeOut(animationSpec = tween(400))
         },
         popEnterTransition = {
-            slideInHorizontally(initialOffsetX = { -1000 }) + fadeIn()
+            slideInHorizontally(
+                initialOffsetX = { -1000 },
+                animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessMediumLow)
+            ) + fadeIn(animationSpec = tween(400))
         },
         popExitTransition = {
-            slideOutHorizontally(targetOffsetX = { 1000 }) + fadeOut()
+            slideOutHorizontally(
+                targetOffsetX = { 1000 },
+                animationSpec = spring(dampingRatio = Spring.DampingRatioNoBouncy, stiffness = Spring.StiffnessMediumLow)
+            ) + fadeOut(animationSpec = tween(400))
         }
     ) {
         composable(route = Screen.Splash.route) {

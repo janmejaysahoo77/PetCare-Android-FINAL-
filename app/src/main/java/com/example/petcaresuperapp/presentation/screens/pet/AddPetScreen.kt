@@ -302,7 +302,7 @@ fun GenderChip(label: String, isSelected: Boolean, modifier: Modifier = Modifier
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
         color = if (isSelected) PrimaryColor else SurfaceColor,
-        border = if (isSelected) null else androidx.compose.foundation.BorderStroke(1.dp, DividerColor)
+        border = if (isSelected) null else androidx.compose.foundation.BorderStroke(1.dp, SurfaceVariantDark)
     ) {
         Box(contentAlignment = Alignment.Center) {
             Text(

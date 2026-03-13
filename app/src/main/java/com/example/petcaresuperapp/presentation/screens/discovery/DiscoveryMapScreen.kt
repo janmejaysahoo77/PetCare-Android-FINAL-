@@ -53,9 +53,9 @@ fun DiscoveryMapScreen(navController: NavController) {
                 Icon(Icons.Default.Map, contentDescription = null, modifier = Modifier.size(100.dp), tint = Color.White)
                 
                 // Mock Markers
-                MarkerIcon(Modifier.offset(x = (-50).dp, y = (-100).dp), Icons.Default.Park, SuccessGradStart)
+                MarkerIcon(Modifier.offset(x = (-50).dp, y = (-100).dp), Icons.Default.Park, Primary2026)
                 MarkerIcon(Modifier.offset(x = 80.dp, y = (-40).dp), Icons.Default.ShoppingBag, PrimaryColor)
-                MarkerIcon(Modifier.offset(x = (-100).dp, y = 60.dp), Icons.Default.LocalHospital, AccentColor)
+                MarkerIcon(Modifier.offset(x = (-100).dp, y = 60.dp), Icons.Default.LocalHospital, Accent2026)
             }
 
             // Category Selector
@@ -94,10 +94,10 @@ fun DiscoveryMapScreen(navController: NavController) {
                         modifier = Modifier
                             .size(60.dp)
                             .clip(RoundedCornerShape(16.dp))
-                            .background(SuccessGradStart.copy(alpha = 0.1f)),
+                            .background(Primary2026.copy(alpha = 0.1f)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Icon(Icons.Default.Park, contentDescription = null, tint = SuccessGradStart)
+                        Icon(Icons.Default.Park, contentDescription = null, tint = Primary2026)
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {

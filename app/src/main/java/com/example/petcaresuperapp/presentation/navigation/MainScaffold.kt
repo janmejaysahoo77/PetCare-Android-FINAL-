@@ -2,6 +2,7 @@ package com.example.petcaresuperapp.presentation.navigation
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -132,9 +133,12 @@ fun MainScaffold(
             },
             bottomBar = {
                 NavigationBar(
-                    containerColor = SurfaceDark,
-                    tonalElevation = 8.dp,
-                    modifier = Modifier.clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
+                    containerColor = SurfaceDark.copy(alpha = 0.95f),
+                    tonalElevation = 0.dp,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 12.dp)
+                        .clip(RoundedCornerShape(32.dp))
+                        .border(1.dp, Color.White.copy(alpha = 0.05f), RoundedCornerShape(32.dp))
                 ) {
                     bottomNavItems.forEach { item ->
                         val selected = currentRoute == item.route
@@ -150,31 +154,30 @@ fun MainScaffold(
                                 }
                             },
                             icon = {
-                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    Icon(
-                                        item.icon, 
-                                        contentDescription = item.title,
-                                        modifier = Modifier.size(if (selected) 26.dp else 24.dp),
-                                        tint = if (selected) Primary2026 else TextGray
-                                    )
-                                }
+                                val iconScale by animateFloatAsState(
+                                    targetValue = if (selected) 1.2f else 1f,
+                                    animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+                                    label = "navIconScale"
+                                )
+                                Icon(
+                                    item.icon, 
+                                    contentDescription = item.title,
+                                    modifier = Modifier
+                                        .size(24.dp)
+                                        .scale(iconScale),
+                                    tint = if (selected) Primary2026 else TextGray
+                                )
                             },
                             label = {
-                                AnimatedVisibility(
-                                    visible = selected,
-                                    enter = fadeIn() + expandVertically(),
-                                    exit = fadeOut() + shrinkVertically()
-                                ) {
-                                    Text(
-                                        item.title,
-                                        fontSize = 11.sp,
-                                        fontWeight = FontWeight.Medium,
-                                        color = if (selected) Primary2026 else TextGray
-                                    )
-                                }
+                                Text(
+                                    item.title,
+                                    fontSize = 10.sp,
+                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                                    color = if (selected) Primary2026 else TextGray
+                                )
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                indicatorColor = Color.Transparent,
+                                indicatorColor = Primary2026.copy(alpha = 0.1f),
                                 selectedIconColor = Primary2026,
                                 unselectedIconColor = TextGray,
                                 selectedTextColor = Primary2026,

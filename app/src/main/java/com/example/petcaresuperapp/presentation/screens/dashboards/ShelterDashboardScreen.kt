@@ -71,7 +71,7 @@ fun ShelterDashboardScreen(navController: NavController) {
                 GradientButton_Custom(
                     text = "Add New Pet for Adoption",
                     onClick = { /* TODO */ },
-                    gradient = SuccessGradient
+                    gradient = PremiumGradient
                 )
             }
             item { Spacer(modifier = Modifier.height(20.dp)) }
@@ -97,7 +97,7 @@ fun ShelterStats() {
             title = "Adopted",
             value = "128",
             icon = Icons.Default.CheckCircle,
-            color = SuccessGradStart
+            color = Primary2026
         )
     }
 }
@@ -147,17 +147,17 @@ fun AdoptionRequestCard(request: AdoptionRequest) {
             }
             Badge(
                 containerColor = when(request.status) {
-                    "Approved" -> SuccessGradStart.copy(alpha = 0.1f)
-                    "Pending" -> AccentGradStart.copy(alpha = 0.1f)
-                    else -> SecondaryGradStart.copy(alpha = 0.1f)
+                    "Approved" -> Primary2026.copy(alpha = 0.1f)
+                    "Pending" -> Accent2026.copy(alpha = 0.1f)
+                    else -> Secondary2026.copy(alpha = 0.1f)
                 }
             ) {
                 Text(
                     request.status,
                     color = when(request.status) {
-                        "Approved" -> SuccessGradStart
-                        "Pending" -> AccentGradStart
-                        else -> SecondaryGradStart
+                        "Approved" -> Primary2026
+                        "Pending" -> Accent2026
+                        else -> Secondary2026
                     },
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                     fontSize = 10.sp,

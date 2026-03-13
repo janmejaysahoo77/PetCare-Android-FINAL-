@@ -109,11 +109,11 @@ fun InventoryStats() {
             }
             Column {
                 Text("Low Stock", fontSize = 12.sp, color = TextSecondary)
-                Text("12", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = AccentColor)
+                Text("12", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = Accent2026)
             }
             Column {
                 Text("Orders Today", fontSize = 12.sp, color = TextSecondary)
-                Text("28", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = SuccessGradStart)
+                Text("28", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = Primary2026)
             }
         }
     }
@@ -154,7 +154,7 @@ fun ProductCard(product: Product) {
                 ) {
                     Text(product.price, fontWeight = FontWeight.ExtraBold, color = PrimaryColor)
                     Surface(
-                        color = SuccessGradStart.copy(alpha = 0.1f),
+                        color = Primary2026.copy(alpha = 0.1f),
                         shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(
@@ -162,7 +162,7 @@ fun ProductCard(product: Product) {
                             modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
-                            color = SuccessGradStart
+                            color = Primary2026
                         )
                     }
                 }

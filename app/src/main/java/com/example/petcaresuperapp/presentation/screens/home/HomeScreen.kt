@@ -35,6 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.petcaresuperapp.presentation.navigation.Screen
+import com.example.petcaresuperapp.presentation.components.*
 import com.example.petcaresuperapp.ui.theme.*
 
 @Composable
@@ -62,7 +63,7 @@ fun HomeScreen(
                     color = TextWhite
                 )
                 Text(
-                    text = "Welcome back to PetCare",
+                    text = "Your Pet's Wellness Dashboard",
                     style = Typography.bodyMedium,
                     color = TextGray
                 )
@@ -73,13 +74,14 @@ fun HomeScreen(
         item {
             AnimatedVisibility(
                 visible = !uiState.isLoading,
-                enter = fadeIn() + slideInVertically()
+                enter = fadeIn() + slideInVertically(initialOffsetY = { 40 })
             ) {
                 if (uiState.hasPet) {
-                    PremiumPetCard(
+                    PetCard(
                         petName = uiState.petName,
                         petDescription = uiState.petDescription,
-                        petImageUrl = uiState.petImageUrl
+                        petImageUrl = uiState.petImageUrl,
+                        onClick = { navController.navigate(Screen.PetProfile.route) }
                     )
                 } else {
                     EmptyPetCard(
@@ -100,7 +102,7 @@ fun HomeScreen(
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     StatCard(
                         modifier = Modifier.weight(1f),
@@ -108,7 +110,7 @@ fun HomeScreen(
                         label = "Heart Rate",
                         value = "85 bpm",
                         color = Color(0xFFEF4444),
-                        delay = 0
+                        delay = 100
                     )
                     StatCard(
                         modifier = Modifier.weight(1f),
@@ -116,7 +118,7 @@ fun HomeScreen(
                         label = "Activity",
                         value = "45 min",
                         color = Primary2026,
-                        delay = 100
+                        delay = 200
                     )
                     StatCard(
                         modifier = Modifier.weight(1f),
@@ -124,7 +126,7 @@ fun HomeScreen(
                         label = "Weight",
                         value = "12.5 kg",
                         color = Color(0xFF3B82F6),
-                        delay = 200
+                        delay = 300
                     )
                 }
             }
@@ -163,134 +165,6 @@ fun HomeScreen(
 }
 
 @Composable
-fun PremiumPetCard(
-    petName: String,
-    petDescription: String,
-    petImageUrl: String
-) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(220.dp)
-            .animateContentSize(),
-        shape = RoundedCornerShape(28.dp),
-        color = SurfaceDark,
-        tonalElevation = 8.dp
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            AsyncImage(
-                model = petImageUrl.ifEmpty { "https://images.unsplash.com/photo-1543466835-00a7907e9de1" },
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-            // Gradient Overlay
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
-                            startY = 300f
-                        )
-                    )
-            )
-            
-            Column(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(24.dp)
-            ) {
-                Text(
-                    text = petName,
-                    style = Typography.headlineLarge,
-                    color = Color.White
-                )
-                Text(
-                    text = petDescription.ifEmpty { "A very happy pet!" },
-                    style = Typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.8f),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-            
-            Surface(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(16.dp),
-                color = Primary2026,
-                shape = CircleShape
-            ) {
-                Icon(
-                    Icons.Rounded.Pets,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.padding(8.dp).size(20.dp)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun StatCard(
-    modifier: Modifier = Modifier,
-    icon: ImageVector,
-    label: String,
-    value: String,
-    color: Color,
-    delay: Int
-) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(delay.toLong())
-        visible = true
-    }
-
-    AnimatedVisibility(
-        visible = visible,
-        enter = fadeIn() + scaleIn(initialScale = 0.8f),
-        modifier = modifier
-    ) {
-        Surface(
-            modifier = Modifier
-                .height(130.dp)
-                .border(
-                    width = 1.dp,
-                    brush = Brush.verticalGradient(
-                        colors = listOf(Color.White.copy(alpha = 0.1f), Color.Transparent)
-                    ),
-                    shape = RoundedCornerShape(24.dp)
-                ),
-            color = SurfaceDark.copy(alpha = 0.6f),
-            shape = RoundedCornerShape(24.dp),
-            tonalElevation = 4.dp
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(36.dp)
-                        .background(color.copy(alpha = 0.2f), CircleShape),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(18.dp))
-                }
-                Column {
-                    Text(value, style = Typography.titleLarge, color = TextWhite)
-                    Text(label, style = Typography.labelMedium, color = TextGray)
-                }
-            }
-        }
-    }
-}
-
-@Composable
 fun ActionCard(
     title: String,
     icon: ImageVector,
@@ -300,17 +174,25 @@ fun ActionCard(
     Surface(
         onClick = onClick,
         modifier = Modifier
-            .size(100.dp, 120.dp),
+            .size(110.dp, 130.dp),
         shape = RoundedCornerShape(24.dp),
         color = SurfaceDark,
-        tonalElevation = 2.dp
+        tonalElevation = 2.dp,
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.05f))
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Icon(icon, contentDescription = title, tint = color, modifier = Modifier.size(32.dp))
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(color.copy(alpha = 0.1f), CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(icon, contentDescription = title, tint = color, modifier = Modifier.size(26.dp))
+            }
             Spacer(modifier = Modifier.height(12.dp))
             Text(title, style = Typography.labelLarge, color = TextWhite)
         }
@@ -322,9 +204,9 @@ fun EmptyPetCard(onClickAddPet: () -> Unit) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(140.dp)
+            .height(160.dp)
             .clickable { onClickAddPet() },
-        shape = RoundedCornerShape(28.dp),
+        shape = RoundedCornerShape(RoundedCornersLarge),
         color = SurfaceDark.copy(alpha = 0.3f),
         border = androidx.compose.foundation.BorderStroke(1.dp, Primary2026.copy(alpha = 0.2f))
     ) {
@@ -333,8 +215,8 @@ fun EmptyPetCard(onClickAddPet: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Icon(Icons.Default.AddAPhoto, contentDescription = null, tint = Primary2026, modifier = Modifier.size(32.dp))
-            Spacer(modifier = Modifier.height(8.dp))
+            Icon(Icons.Default.AddAPhoto, contentDescription = null, tint = Primary2026, modifier = Modifier.size(36.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = "Add your first pet",
                 style = Typography.titleMedium,

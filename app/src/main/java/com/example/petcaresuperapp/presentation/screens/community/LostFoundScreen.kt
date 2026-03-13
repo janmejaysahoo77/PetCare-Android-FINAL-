@@ -52,7 +52,7 @@ fun LostFoundScreen(navController: NavController) {
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 onClick = { /* TODO */ },
-                containerColor = AccentColor,
+                containerColor = Accent2026,
                 contentColor = Color.White,
                 icon = { Icon(Icons.Default.Add, contentDescription = null) },
                 text = { Text("Report Pet") }
@@ -97,7 +97,7 @@ fun LostPetCard(alert: LostPetPost) {
                 modifier = Modifier
                     .size(80.dp)
                     .background(
-                        if (alert.type == "LOST") AccentColor.copy(alpha = 0.1f) else SuccessGradStart.copy(alpha = 0.1f),
+                        if (alert.type == "LOST") Accent2026.copy(alpha = 0.1f) else Primary2026.copy(alpha = 0.1f),
                         RoundedCornerShape(16.dp)
                     ),
                 contentAlignment = Alignment.Center
@@ -105,7 +105,7 @@ fun LostPetCard(alert: LostPetPost) {
                 Icon(
                     imageVector = Icons.Default.Pets,
                     contentDescription = null,
-                    tint = if (alert.type == "LOST") AccentColor else SuccessGradStart,
+                    tint = if (alert.type == "LOST") Accent2026 else Primary2026,
                     modifier = Modifier.size(32.dp)
                 )
             }
@@ -114,7 +114,7 @@ fun LostPetCard(alert: LostPetPost) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         alert.type,
-                        color = if (alert.type == "LOST") AccentColor else SuccessGradStart,
+                        color = if (alert.type == "LOST") Accent2026 else Primary2026,
                         fontWeight = FontWeight.Black,
                         fontSize = 10.sp
                     )

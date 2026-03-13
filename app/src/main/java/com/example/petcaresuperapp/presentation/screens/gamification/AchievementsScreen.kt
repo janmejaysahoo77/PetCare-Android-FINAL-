@@ -35,12 +35,12 @@ data class Achievement(
 @Composable
 fun AchievementsScreen(navController: NavController) {
     val achievements = listOf(
-        Achievement("Responsible Parent", Icons.Default.Verified, SuccessGradStart, true),
+        Achievement("Responsible Parent", Icons.Default.Verified, Primary2026, true),
         Achievement("Early Bird", Icons.Default.WbSunny, Color(0xFFFFB300), true),
         Achievement("Health Expert", Icons.Default.MedicalServices, PrimaryColor, true),
         Achievement("Social Butterfly", Icons.Default.Groups, SecondaryColor, false, 0.6f),
         Achievement("Daily Walker", Icons.Default.DirectionsWalk, Color(0xFF4CAF50), false, 0.4f),
-        Achievement("Life Saver", Icons.Default.VolunteerActivism, AccentColor, false, 0.1f)
+        Achievement("Life Saver", Icons.Default.VolunteerActivism, Accent2026, false, 0.1f)
     )
 
     Scaffold(

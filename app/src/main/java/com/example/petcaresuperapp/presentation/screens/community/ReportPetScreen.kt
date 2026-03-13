@@ -114,7 +114,7 @@ fun ReportPetScreen(navController: NavController) {
             GradientButton(
                 text = "Submit Report",
                 onClick = { navController.popBackStack() },
-                gradient = if (reportType == "LOST") AccentGradient else SuccessGradient
+                gradient = PremiumGradient
             )
         }
     }
@@ -128,7 +128,7 @@ fun TypeSelector(label: String, isSelected: Boolean, modifier: Modifier, onClick
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
         color = if (isSelected) PrimaryColor else Color.White,
-        border = if (isSelected) null else androidx.compose.foundation.BorderStroke(1.dp, DividerColor)
+        border = if (isSelected) null else androidx.compose.foundation.BorderStroke(1.dp, SurfaceVariantDark)
     ) {
         Box(contentAlignment = Alignment.Center) {
             Text(

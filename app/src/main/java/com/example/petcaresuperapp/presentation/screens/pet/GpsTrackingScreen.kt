@@ -100,16 +100,16 @@ fun GpsTrackingScreen(navController: NavController) {
                             Text("Central Park, Area 5", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
                         }
                         Surface(
-                            color = SuccessGradStart.copy(alpha = 0.1f),
+                            color = Primary2026.copy(alpha = 0.1f),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Row(
                                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Box(modifier = Modifier.size(8.dp).background(SuccessGradStart, CircleShape))
+                                Box(modifier = Modifier.size(8.dp).background(Primary2026, CircleShape))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Online", color = SuccessGradStart, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                                Text("Online", color = Primary2026, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                             }
                         }
                     }
@@ -122,11 +122,11 @@ fun GpsTrackingScreen(navController: NavController) {
                     ) {
                         TrackingStat("Battery", "85%", Icons.Default.BatteryChargingFull, PrimaryColor)
                         TrackingStat("Signal", "Strong", Icons.Default.Wifi, SecondaryColor)
-                        TrackingStat("Speed", "3 km/h", Icons.Default.Speed, AccentColor)
+                        TrackingStat("Speed", "3 km/h", Icons.Default.Speed, Accent2026)
                     }
 
                     Spacer(modifier = Modifier.height(24.dp))
-                    HorizontalDivider(color = DividerColor)
+                    HorizontalDivider(color = SurfaceVariantDark)
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Row(
@@ -138,10 +138,10 @@ fun GpsTrackingScreen(navController: NavController) {
                             Box(
                                 modifier = Modifier
                                     .size(40.dp)
-                                    .background(AccentColor.copy(alpha = 0.1f), RoundedCornerShape(12.dp)),
+                                    .background(Accent2026.copy(alpha = 0.1f), RoundedCornerShape(12.dp)),
                                 contentAlignment = Alignment.Center
                             ) {
-                                Icon(Icons.Default.Security, contentDescription = null, tint = AccentColor, modifier = Modifier.size(20.dp))
+                                Icon(Icons.Default.Security, contentDescription = null, tint = Accent2026, modifier = Modifier.size(20.dp))
                             }
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {

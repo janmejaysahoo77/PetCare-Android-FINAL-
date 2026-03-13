@@ -65,7 +65,7 @@ fun EmergencySosScreen(navController: NavController) {
                 Icon(
                     Icons.Default.Warning,
                     contentDescription = null,
-                    tint = AccentColor,
+                    tint = Error2026,
                     modifier = Modifier.size(80.dp)
                 )
                 Spacer(modifier = Modifier.height(24.dp))
@@ -91,7 +91,7 @@ fun EmergencySosScreen(navController: NavController) {
                         .size(200.dp)
                         .scale(scale),
                     shape = CircleShape,
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentColor),
+                    colors = ButtonDefaults.buttonColors(containerColor = Error2026),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -105,7 +105,7 @@ fun EmergencySosScreen(navController: NavController) {
                     "Broadcasting Alert...",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = AccentColor
+                    color = Error2026
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
@@ -118,7 +118,7 @@ fun EmergencySosScreen(navController: NavController) {
                 
                 CircularProgressIndicator(
                     modifier = Modifier.size(80.dp),
-                    color = AccentColor,
+                    color = Error2026,
                     strokeWidth = 6.dp
                 )
                 
@@ -129,7 +129,7 @@ fun EmergencySosScreen(navController: NavController) {
                     modifier = Modifier.fillMaxWidth().height(56.dp),
                     shape = RoundedCornerShape(16.dp)
                 ) {
-                    Text("Cancel Alert", color = AccentColor)
+                    Text("Cancel Alert", color = Error2026)
                 }
             }
         }

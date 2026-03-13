@@ -30,23 +30,14 @@ private val ModernDarkColorScheme = darkColorScheme(
     surfaceVariant = SurfaceVariantDark,
     onSurfaceVariant = TextGray,
     error = Error2026,
-    outline = TextGray
-)
-
-// We want to favor the modern dark theme, but will keep a refined light version if needed.
-// However, the user explicitly asked for #0F172A as background.
-private val ModernLightColorScheme = lightColorScheme(
-    primary = Primary2026,
-    onPrimary = Color.White,
-    secondary = Secondary2026,
-    background = Color(0xFFF8FAFC),
-    surface = Color.White,
-    onSurface = Color(0xFF0F172A)
+    outline = TextGray,
+    secondaryContainer = Color(0xFF1E293B),
+    onSecondaryContainer = Color.White
 )
 
 @Composable
 fun PetCareSuperAppTheme(
-    darkTheme: Boolean = true, // Default to true as per "premium dark elegant background" requirement
+    darkTheme: Boolean = true,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -55,8 +46,7 @@ fun PetCareSuperAppTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> ModernDarkColorScheme
-        else -> ModernLightColorScheme
+        else -> ModernDarkColorScheme
     }
 
     val view = LocalView.current
@@ -65,7 +55,7 @@ fun PetCareSuperAppTheme(
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.background.toArgb()
             window.navigationBarColor = colorScheme.background.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
 

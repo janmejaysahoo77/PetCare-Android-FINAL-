@@ -103,7 +103,7 @@ fun BlockchainIdentityScreen(navController: NavController) {
             Text("Verified Records", fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(16.dp))
 
-            RecordItem("Ownership Certificate", "Verified by PetChain", "Oct 12, 2023", Icons.Default.VerifiedUser, SuccessGradStart)
+            RecordItem("Ownership Certificate", "Verified by PetChain", "Oct 12, 2023", Icons.Default.VerifiedUser, Primary2026)
             RecordItem("Rabies Vaccination", "Verified by Happy Paws Clinic", "May 15, 2024", Icons.Default.HealthAndSafety, SecondaryColor)
             RecordItem("Microchip Registration", "Verified by National Pet Registry", "Oct 12, 2023", Icons.Default.SdCard, PrimaryColor)
 
@@ -112,11 +112,11 @@ fun BlockchainIdentityScreen(navController: NavController) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                color = SuccessGradStart.copy(alpha = 0.05f),
-                border = androidx.compose.foundation.BorderStroke(1.dp, SuccessGradStart.copy(alpha = 0.2f))
+                color = Primary2026.copy(alpha = 0.05f),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Primary2026.copy(alpha = 0.2f))
             ) {
                 Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.Shield, contentDescription = null, tint = SuccessGradStart)
+                    Icon(Icons.Default.Shield, contentDescription = null, tint = Primary2026)
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
                         "Your pet's records are tamper-proof and securely stored on the blockchain.",

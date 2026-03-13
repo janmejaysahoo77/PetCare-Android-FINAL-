@@ -51,7 +51,7 @@ fun HealthAnalyticsScreen(navController: NavController) {
             AnalyticsChartPlaceholder(color = PrimaryColor)
 
             Text("Activity Levels", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            AnalyticsChartPlaceholder(color = SuccessGradStart)
+            AnalyticsChartPlaceholder(color = Primary2026)
 
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 AnalyticsStatBox(
@@ -66,7 +66,7 @@ fun HealthAnalyticsScreen(navController: NavController) {
                     label = "Avg Calories",
                     value = "1.1k",
                     icon = Icons.Default.LocalFireDepartment,
-                    color = AccentColor
+                    color = Accent2026
                 )
             }
 

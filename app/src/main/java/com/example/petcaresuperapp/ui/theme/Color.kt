@@ -2,6 +2,7 @@ package com.example.petcaresuperapp.ui.theme
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 
 // Modern 2026 Design System - Primary & Secondary
 val Primary2026 = Color(0xFF22C55E) // Modern Green
@@ -35,7 +36,11 @@ val GlassGradient = Brush.verticalGradient(
     )
 )
 
-// Legacy compatibility (mapping to new system)
+// UI Constants
+val RoundedCornersLarge = 20.dp
+val CardElevationPremium = 6.dp
+
+// Standardized mapping
 val PrimaryColor = Primary2026
 val SecondaryColor = Secondary2026
 val BackgroundColor = BackgroundDark
@@ -44,11 +49,14 @@ val TextPrimary = TextWhite
 val TextSecondary = TextGray
 val PrimaryGradient = PremiumGradient
 
-// Keep some old names if absolutely necessary for build, but transition to new ones
-val PrimaryLight = Primary2026
-val PrimaryMain = Primary2026
-val PrimaryDarkColor = Color(0xFF16A34A)
-val DarkBackground = BackgroundDark
-val DarkSurface = SurfaceDark
-val DarkTextPrimary = TextWhite
-val DarkTextSecondary = TextGray
+// Legacy aliases for backward compatibility
+val TextGrey = TextGray
+val AccentColor = Error2026
+val SuccessGradStart = Primary2026
+val AccentGradStart = Accent2026
+val SecondaryGradStart = Secondary2026
+val DividerColor = SurfaceVariantDark
+val SecondaryGradient = GlassGradient
+val PrimaryGradientColors = listOf(Primary2026, Color(0xFF16A34A))
+val SecondaryGradientColors = listOf(Secondary2026, Color(0xFF22C55E))
+val AccentGradientColors = listOf(Accent2026, Color(0xFF059669))

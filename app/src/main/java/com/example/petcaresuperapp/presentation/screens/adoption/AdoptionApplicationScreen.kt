@@ -94,7 +94,7 @@ fun ApplicationField(label: String, value: String, onValueChange: (String) -> Un
             modifier = Modifier.fillMaxWidth().then(if (isLarge) Modifier.height(120.dp) else Modifier),
             shape = RoundedCornerShape(16.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = DividerColor,
+                unfocusedBorderColor = SurfaceVariantDark,
                 focusedBorderColor = PrimaryColor,
                 unfocusedContainerColor = SurfaceColor,
                 focusedContainerColor = SurfaceColor

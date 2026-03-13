@@ -50,12 +50,12 @@ fun ChatScreen(navController: NavController) {
                             modifier = Modifier
                                 .size(36.dp)
                                 .clip(CircleShape)
-                                .background(SecondaryGradient)
+                                .background(GlassGradient)
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
                             Text("Sarah Wilson", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                            Text("Online", fontSize = 11.sp, color = SuccessGradStart)
+                            Text("Online", fontSize = 11.sp, color = Primary2026)
                         }
                     }
                 },
@@ -104,7 +104,7 @@ fun ChatScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { /* TODO */ }) {
-                        Icon(Icons.Default.Add, contentDescription = null, tint = TextGrey)
+                        Icon(Icons.Default.Add, contentDescription = null, tint = TextGray)
                     }
                     OutlinedTextField(
                         value = messageText,
@@ -113,7 +113,7 @@ fun ChatScreen(navController: NavController) {
                         placeholder = { Text("Type a message...") },
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            unfocusedBorderColor = DividerColor,
+                            unfocusedBorderColor = SurfaceVariantDark,
                             focusedBorderColor = PrimaryColor
                         )
                     )
@@ -159,7 +159,7 @@ fun ChatBubble(message: Message) {
             Text(
                 text = message.time,
                 fontSize = 10.sp,
-                color = TextGrey,
+                color = TextGray,
                 modifier = Modifier.padding(top = 4.dp, start = 4.dp, end = 4.dp)
             )
         }

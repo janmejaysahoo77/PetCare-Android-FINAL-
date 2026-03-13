@@ -87,9 +87,9 @@ fun EducationCategories() {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         CategoryIconBox("Health", PrimaryColor)
-        CategoryIconBox("Diet", AccentColor)
+        CategoryIconBox("Diet", Accent2026)
         CategoryIconBox("Training", SecondaryColor)
-        CategoryIconBox("Care", SuccessGradStart)
+        CategoryIconBox("Care", Primary2026)
     }
 }
 

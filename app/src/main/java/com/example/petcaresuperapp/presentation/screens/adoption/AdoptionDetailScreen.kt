@@ -55,7 +55,7 @@ fun AdoptionDetailScreen(navController: NavController, petId: String?) {
                             .background(Color.White, RoundedCornerShape(16.dp))
                             .padding(8.dp)
                     ) {
-                        Icon(Icons.Default.FavoriteBorder, contentDescription = null, tint = AccentColor)
+                        Icon(Icons.Default.FavoriteBorder, contentDescription = null, tint = Accent2026)
                     }
                     GradientButton(
                         text = "Apply for Adoption",
@@ -141,17 +141,17 @@ fun AdoptionDetailScreen(navController: NavController, petId: String?) {
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     color = Color.White,
-                    border = androidx.compose.foundation.BorderStroke(1.dp, DividerColor)
+                    border = androidx.compose.foundation.BorderStroke(1.dp, SurfaceVariantDark)
                 ) {
                     Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Box(modifier = Modifier.size(48.dp).clip(CircleShape).background(SuccessGradient))
+                        Box(modifier = Modifier.size(48.dp).clip(CircleShape).background(PremiumGradient))
                         Spacer(modifier = Modifier.width(16.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text("Safe Haven Shelter", fontWeight = FontWeight.Bold, fontSize = 15.sp)
                             Text("Brooklyn, New York", fontSize = 12.sp, color = TextSecondary)
                         }
                         IconButton(onClick = { /* TODO: Call */ }) {
-                            Icon(Icons.Default.Phone, contentDescription = null, tint = SuccessGradStart)
+                            Icon(Icons.Default.Phone, contentDescription = null, tint = Primary2026)
                         }
                     }
                 }
@@ -186,7 +186,7 @@ fun HealthTag_Custom(text: String) {
         modifier = Modifier.padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(Icons.Default.CheckCircle, contentDescription = null, tint = SuccessGradStart, modifier = Modifier.size(18.dp))
+        Icon(Icons.Default.CheckCircle, contentDescription = null, tint = Primary2026, modifier = Modifier.size(18.dp))
         Spacer(modifier = Modifier.width(12.dp))
         Text(text, color = TextPrimary, fontSize = 14.sp)
     }

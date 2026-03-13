@@ -65,7 +65,7 @@ fun ActivityTrackerScreen(navController: NavController) {
                     value = "1,200 kcal / 1,500 kcal",
                     progress = 0.8f,
                     icon = Icons.Default.Restaurant,
-                    color = AccentColor
+                    color = Accent2026
                 )
             }
             item {
@@ -94,7 +94,7 @@ fun ActivitySummary() {
     ) {
         Column(modifier = Modifier.padding(24.dp)) {
             Text("Today's Score", fontSize = 14.sp, color = TextSecondary)
-            Text("Very Active", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = SuccessGradStart)
+            Text("Very Active", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = Primary2026)
             Spacer(modifier = Modifier.height(16.dp))
             LinearProgressIndicator(
                 progress = { 0.85f },
@@ -102,8 +102,8 @@ fun ActivitySummary() {
                     .fillMaxWidth()
                     .height(12.dp)
                     .clip(CircleShape),
-                color = SuccessGradStart,
-                trackColor = SuccessGradStart.copy(alpha = 0.1f)
+                color = Primary2026,
+                trackColor = Primary2026.copy(alpha = 0.1f)
             )
         }
     }
@@ -157,7 +157,7 @@ fun PetCareGamification() {
     ) {
         Row(
             modifier = Modifier
-                .background(SecondaryGradient)
+                .background(GlassGradient)
                 .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

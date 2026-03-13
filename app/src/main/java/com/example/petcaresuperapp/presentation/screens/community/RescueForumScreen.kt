@@ -139,7 +139,7 @@ fun ForumTopicCard(topic: ForumTopic) {
                     Text(topic.category, color = SecondaryColor, modifier = Modifier.padding(4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(topic.time, fontSize = 11.sp, color = TextGrey)
+                Text(topic.time, fontSize = 11.sp, color = TextGray)
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(topic.title, fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, color = TextPrimary)
@@ -157,11 +157,11 @@ fun ForumTopicCard(topic: ForumTopic) {
                     Text(topic.author, fontSize = 12.sp, color = TextSecondary)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.ChatBubbleOutline, contentDescription = null, modifier = Modifier.size(14.dp), tint = TextGrey)
-                    Text(" ${topic.replies}", fontSize = 12.sp, color = TextGrey)
+                    Icon(Icons.Default.ChatBubbleOutline, contentDescription = null, modifier = Modifier.size(14.dp), tint = TextGray)
+                    Text(" ${topic.replies}", fontSize = 12.sp, color = TextGray)
                     Spacer(modifier = Modifier.width(12.dp))
-                    Icon(Icons.Default.Visibility, contentDescription = null, modifier = Modifier.size(14.dp), tint = TextGrey)
-                    Text(" ${topic.views}", fontSize = 12.sp, color = TextGrey)
+                    Icon(Icons.Default.Visibility, contentDescription = null, modifier = Modifier.size(14.dp), tint = TextGray)
+                    Text(" ${topic.views}", fontSize = 12.sp, color = TextGray)
                 }
             }
         }

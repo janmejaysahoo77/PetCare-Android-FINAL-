@@ -35,8 +35,8 @@ data class AppNotification(
 @Composable
 fun NotificationScreen(navController: NavController) {
     val notifications = listOf(
-        AppNotification("Heartworm Pill Reminder", "08:00 AM", "Today", "Health", Icons.Default.Medication, AccentColor),
-        AppNotification("Evening Walk", "06:30 PM", "Daily", "Activity", Icons.Default.DirectionsWalk, SuccessGradStart),
+        AppNotification("Heartworm Pill Reminder", "08:00 AM", "Today", "Health", Icons.Default.Medication, Accent2026),
+        AppNotification("Evening Walk", "06:30 PM", "Daily", "Activity", Icons.Default.DirectionsWalk, Primary2026),
         AppNotification("Rabies Vaccine Appointment", "10:00 AM", "15 Oct 2024", "Health", Icons.Default.Vaccines, PrimaryColor),
         AppNotification("Deworming Reminder", "09:00 AM", "20 Oct 2024", "Health", Icons.Default.Medication, SecondaryColor)
     )

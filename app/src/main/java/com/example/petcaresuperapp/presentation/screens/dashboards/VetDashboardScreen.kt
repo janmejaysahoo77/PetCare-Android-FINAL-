@@ -101,7 +101,7 @@ fun VetStatsSection() {
             title = "Revenue",
             value = "$4.2k",
             icon = Icons.Default.Payments,
-            color = SuccessGradStart
+            color = Primary2026
         )
     }
 }
@@ -154,12 +154,12 @@ fun AppointmentCard(appt: Appointment) {
                 Text("Owner: ${appt.owner}", fontSize = 11.sp, color = TextSecondary)
             }
             Badge(
-                containerColor = if (appt.status == "Confirmed") SuccessGradStart.copy(alpha = 0.1f) 
-                                 else AccentColor.copy(alpha = 0.1f)
+                containerColor = if (appt.status == "Confirmed") Primary2026.copy(alpha = 0.1f) 
+                                 else Accent2026.copy(alpha = 0.1f)
             ) {
                 Text(
                     appt.status,
-                    color = if (appt.status == "Confirmed") SuccessGradStart else AccentColor,
+                    color = if (appt.status == "Confirmed") Primary2026 else Accent2026,
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold
@@ -174,17 +174,17 @@ fun EmergencyRequestsSection() {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = AccentColor.copy(alpha = 0.1f),
-        border = androidx.compose.foundation.BorderStroke(1.dp, AccentColor.copy(alpha = 0.3f))
+        color = Accent2026.copy(alpha = 0.1f),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Accent2026.copy(alpha = 0.3f))
     ) {
         Row(
             modifier = Modifier.padding(20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(Icons.Default.Warning, contentDescription = null, tint = AccentColor)
+            Icon(Icons.Default.Warning, contentDescription = null, tint = Accent2026)
             Spacer(modifier = Modifier.width(16.dp))
             Column {
-                Text("Emergency SOS", fontWeight = FontWeight.Bold, color = AccentColor)
+                Text("Emergency SOS", fontWeight = FontWeight.Bold, color = Accent2026)
                 Text("No active emergency requests nearby", fontSize = 12.sp, color = TextSecondary)
             }
         }
