@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetCareSuperApp">
         
-        <service android:name=".service.AppointmentTrackingService" android:exported="false" android:foregroundServiceType="dataSync" />
+        <service android:name=".service.PetCareNotificationService" android:exported="false" android:foregroundServiceType="dataSync" />
 
         <meta-data
             android:name="org.osmdroid.config"

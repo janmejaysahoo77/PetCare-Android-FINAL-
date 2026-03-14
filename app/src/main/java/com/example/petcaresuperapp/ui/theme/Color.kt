@@ -13,6 +13,8 @@ val Accent2026 = Color(0xFF10B981)
 val BackgroundDark = Color(0xFF0F172A)
 val SurfaceDark = Color(0xFF1E293B)
 val SurfaceVariantDark = Color(0xFF334155)
+val SurfaceDarker = Color(0xFF0F172A) // Same as BackgroundDark for now
+val Success2026 = Color(0xFF22C55E) // Same as Primary2026
 
 // Text Colors
 val TextWhite = Color(0xFFFFFFFF)

@@ -24,6 +24,9 @@ import com.example.petcaresuperapp.presentation.screens.education.*
 import com.example.petcaresuperapp.presentation.screens.store.*
 import com.example.petcaresuperapp.presentation.screens.profile.*
 import com.example.petcaresuperapp.presentation.screens.discovery.*
+import com.example.petcaresuperapp.presentation.screens.lostfound.LostFoundScreen
+import com.example.petcaresuperapp.presentation.screens.lostfound.ReportPetScreen
+import com.example.petcaresuperapp.presentation.screens.lostfound.PetDetailsScreen as LostFoundPetDetailsScreen
 import com.example.petcaresuperapp.presentation.ui.AdoptPetScreen
 import com.example.petcaresuperapp.presentation.ui.PetDetailsScreen
 import com.example.petcaresuperapp.presentation.ui.AdoptionRequestScreen
@@ -59,10 +62,12 @@ sealed class Screen(val route: String) {
     object Community : Screen("community")
     object LostFound : Screen("lost_found")
     object ReportPet : Screen("report_pet")
+    object LostFoundPetDetail : Screen("lost_found_detail/{postId}")
     object Chat : Screen("chat")
     object RescueForum : Screen("rescue_forum")
     object CreatePost : Screen("create_post")
     object SocialComments : Screen("comment_screen/{postId}")
+    object ContactRequests : Screen("contact_requests")
     
     // Adoption
     object Adoption : Screen("adoption")
@@ -292,6 +297,14 @@ fun SetupNavGraph(navController: NavHostController) {
                 ReportPetScreen(navController) 
             }
         }
+        composable(
+            route = Screen.LostFoundPetDetail.route,
+            arguments = listOf(navArgument("postId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            MainScaffold(navController = navController) { padding ->
+                LostFoundPetDetailsScreen(navController, backStackEntry.arguments?.getString("postId"))
+            }
+        }
         composable(route = Screen.Chat.route) { 
             MainScaffold(navController = navController) { padding ->
                 ChatScreen(navController) 
@@ -470,6 +483,11 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.DiscoveryMap.route) { 
             MainScaffold(navController = navController) { padding ->
                 DiscoveryMapScreen(navController) 
+            }
+        }
+        composable(route = Screen.ContactRequests.route) {
+            MainScaffold(navController = navController) { padding ->
+                com.example.petcaresuperapp.presentation.screens.lostfound.NotificationScreen(navController)
             }
         }
     }

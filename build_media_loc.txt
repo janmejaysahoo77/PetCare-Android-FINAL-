@@ -1,0 +1,288 @@
+﻿
+> Configure project :app
+w: file:///C:/temp/PetCareApp/app/build.gradle.kts:37:5: 'fun BaseAppModuleExtension.kotlinOptions(configure: Action<KotlinJvmOptions>): Unit' is deprecated. The kotlinOptions types are deprecated, please migrate to the compilerOptions types. More details are here: https://kotl.in/u1r8ln.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest FROM-CACHE
+> Task :app:processDebugManifestForPackage FROM-CACHE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:processDebugResources
+.\gradlew : The message 
+received from the daemon 
+indicates that the daemon 
+has disappeared.
+At line:1 char:1
++ .\gradlew assembleDebug 
+--console=plain 
+--no-configuration-cache 
+2>&1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (The     
+message rec...as disa    
+ppeared.:String) [], R    
+emoteException
+    + FullyQualifiedErrorI   
+ d : NativeCommandError
+ 
+Build request sent: Build{id=
+68d87c4b-646c-4ca0-acfa-15a62
+30c4858, currentDir=C:\temp\P
+etCareApp}
+Attempting to read last 
+messages from the daemon 
+log...
+Daemon pid: 50824
+  log file: C:\Users\janme\.g
+radle\daemon\9.3.1\daemon-508
+24.out.log
+----- Last 20 lines from 
+daemon log file - 
+daemon-50824.out.log -----
+2026-03-14T08:04:54.183+0530 
+[DEBUG] [org.gradle.cache.int
+ernal.DefaultFileLockManager]
+ Waiting to acquire 
+exclusive lock on daemon 
+addresses registry.
+2026-03-14T08:04:54.289+0530 
+[DEBUG] [org.gradle.cache.int
+ernal.DefaultFileLockManager]
+ Lock acquired on daemon 
+addresses registry.
+2026-03-14T08:04:54.736+0530 
+[DEBUG] [org.gradle.cache.int
+ernal.DefaultFileLockManager]
+ Releasing lock on daemon 
+addresses registry.
+2026-03-14T08:04:55.296+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.DaemonStateCoor
+dinator] resetting idle timer
+2026-03-14T08:04:55.302+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.DaemonStateCoor
+dinator] daemon is running. 
+Sleeping until state changes.
+2026-03-14T08:04:55.321+0530 
+[INFO] [org.gradle.launcher.d
+aemon.server.exec.StartBuildO
+rRespondWithBusy] Daemon is 
+about to start building Build
+{id=68d87c4b-646c-4ca0-acfa-1
+5a6230c4858, currentDir=C:\te
+mp\PetCareApp}. Dispatching 
+build started information...
+2026-03-14T08:04:55.323+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.SynchronizedDis
+patchConnection] thread 351: 
+dispatching org.gradle.launch
+er.daemon.protocol.BuildStart
+ed@33f4707b
+2026-03-14T08:04:55.335+0530 
+[DEBUG] [org.gradle.process.i
+nternal.health.memory.Default
+MemoryManager] 628045004 
+physical memory requested, 
+267059200 free
+2026-03-14T08:04:55.337+0530 
+[DEBUG] [org.gradle.workers.i
+nternal.WorkerDaemonExpiratio
+n] Will attempt to release 
+598 of memory
+2026-03-14T08:04:55.339+0530 
+[DEBUG] [org.gradle.process.i
+nternal.health.memory.Default
+MemoryManager] 628045004 
+physical memory requested, 0 
+released, 267059200 free
+2026-03-14T08:04:55.339+0530 
+[DEBUG] [org.gradle.process.i
+nternal.health.memory.Default
+MemoryManager] 2560780288 
+virtual memory requested, 
+10735616 free
+2026-03-14T08:04:55.339+0530 
+[DEBUG] [org.gradle.workers.i
+nternal.WorkerDaemonExpiratio
+n] Will attempt to release 
+2442 of memory
+2026-03-14T08:04:55.339+0530 
+[DEBUG] [org.gradle.process.i
+nternal.health.memory.Default
+MemoryManager] 2560780288 
+virtual memory requested, 0 
+released, 10735616 free
+2026-03-14T08:04:55.390+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.exec.EstablishB
+uildEnvironment] Configuring 
+env variables: 
+[USERDOMAIN_ROAMINGPROFILE, 
+JAVA HOME, PROCESSOR_LEVEL, 
+SESSIONNAME, 
+ALLUSERSPROFILE, 
+PROCESSOR_ARCHITECTURE, VSCOD
+E_PYTHON_AUTOACTIVATE_GUARD, 
+VSCODE_GIT_IPC_HANDLE, 
+PSModulePath, SystemDrive, 
+=ExitCode, VSCODE_INJECTION, 
+COLORTERM, DIRNAME, 
+USERNAME, 
+VSCODE_GIT_ASKPASS_NODE, 
+TERM_PROGRAM_VERSION, 
+ProgramFiles(x86), 
+GIT_ASKPASS, 
+CHROME_CRASHPAD_PIPE_NAME, 
+EFC_8084, FPS_BROWSER_USER_PR
+OFILE_STRING, APP_HOME, 
+DEFAULT_JVM_OPTS, PATHEXT, 
+DriverData, IntelliJ IDEA 
+Community Edition, PAGER, 
+ProgramData, ProgramW6432, 
+HOMEPATH, 
+PROCESSOR_IDENTIFIER, 
+ProgramFiles, PUBLIC, 
+windir, LOCALAPPDATA, 
+USERDOMAIN, FPS_BROWSER_APP_P
+ROFILE_STRING, LOGONSERVER, 
+PROMPT, LANG, 
+VSCODE_GIT_ASKPASS_MAIN, 
+OneDrive, =C:, APPDATA, VBOX_
+HWVIRTEX_IGNORE_SVM_IN_USE, 
+JAVA_EXE, VSCODE_GIT_ASKPASS_
+EXTRA_ARGS, 
+CommonProgramFiles, Path, 
+ANTIGRAVITY_CLI_ALIAS, OS, 
+TERM_PROGRAM, VSCODE_JDWP_ADA
+PTER_ENDPOINTS, 
+COMPUTERNAME, 
+PROCESSOR_REVISION, 
+CommonProgramW6432, ComSpec, 
+APP_BASE_NAME, SystemRoot, 
+TEMP, HOMEDRIVE, 
+USERPROFILE, TMP, 
+CommonProgramFiles(x86), 
+NUMBER_OF_PROCESSORS, 
+ANTIGRAVITY_AGENT, 
+VSCODE_JAVA_EXEC]
+2026-03-14T08:04:55.458+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.exec.LogToClien
+t] About to start relaying 
+all logs to the client via 
+the connection.
+2026-03-14T08:04:55.477+0530 
+[INFO] [org.gradle.launcher.d
+aemon.server.exec.LogToClient
+] The client will now 
+receive all logging from the 
+daemon (pid: 50824). The 
+daemon log file: C:\Users\jan
+me\.gradle\daemon\9.3.1\daemo
+n-50824.out.log
+2026-03-14T08:04:55.572+0530 
+[INFO] [org.gradle.launcher.d
+aemon.server.exec.LogAndCheck
+Health] Starting 3rd build 
+in daemon [uptime: 11 mins 
+56.247 secs, performance: 
+94%, GC rate: 0.00/s, heap 
+usage: 0% of 4 GiB]
+2026-03-14T08:04:55.586+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.exec.ExecuteBui
+ld] The daemon has started 
+executing the build.
+2026-03-14T08:04:55.600+0530 
+[DEBUG] [org.gradle.launcher.
+daemon.server.exec.ExecuteBui
+ld] Executing build with 
+daemon context: DefaultDaemon
+Context[uid=ea1f7067-fdbb-464
+a-be62-4cd97839f972,javaHome=
+C:\Users\janme\.gradle\jdks\j
+etbrains_s_r_o_-21-amd64-wind
+ows.2,javaVersion=21,javaVend
+or=JetBrains s.r.o.,daemonReg
+istryDir=C:\Users\janme\.grad
+le\daemon,pid=50824,idleTimeo
+ut=10800000,priority=NORMAL,a
+pplyInstrumentationAgent=true
+,nativeServicesMode=ENABLED,d
+aemonOpts=-Xmx4096m,-Dfile.en
+coding=UTF-8,-Duser.country=I
+N,-Duser.language=en,-Duser.v
+ariant]
+w: file:///C:/temp/PetCareApp
+/app/build.gradle.kts:37:5: 
+'fun BaseAppModuleExtension.k
+otlinOptions(configure: 
+Action<KotlinJvmOptions>): 
+Unit' is deprecated. The 
+kotlinOptions types are 
+deprecated, please migrate 
+to the compilerOptions 
+types. More details are 
+here: 
+https://kotl.in/u1r8ln.----- 
+End of the daemon log -----
+
+JVM crash log found: file:///
+C:/temp/PetCareApp/hs_err_pid
+50824.log
+
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+Gradle build daemon 
+disappeared unexpectedly (it 
+may have been killed or may 
+have crashed)
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or --debug 
+option to get more log 
+output.
+> Run with --scan to get 
+full insights from a Build 
+Scan (powered by Develocity).
+> Get more help at 
+https://help.gradle.org.
+> Task :app:mergeExtDexDebug
+> Task :app:kaptGenerateStubsDebugKotlin

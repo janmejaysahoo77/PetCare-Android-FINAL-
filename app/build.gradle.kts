@@ -78,6 +78,10 @@ dependencies {
 
     // Coil Image Loading
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("io.coil-kt:coil-video:2.6.0")
+
+    // Google Play Services - Location
+    implementation("com.google.android.gms:play-services-location:21.1.0")
 
     // QR Code Scanner & Generator
     implementation(libs.play.services.code.scanner)

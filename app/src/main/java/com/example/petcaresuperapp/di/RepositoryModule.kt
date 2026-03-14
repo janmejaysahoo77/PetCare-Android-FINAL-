@@ -13,6 +13,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import com.example.petcaresuperapp.data.repository.ContactRequestRepositoryImpl
+import com.example.petcaresuperapp.domain.repository.ContactRequestRepository
+import com.example.petcaresuperapp.data.repository.LostFoundRepositoryImpl
+import com.example.petcaresuperapp.domain.repository.LostFoundRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -41,4 +45,16 @@ abstract class RepositoryModule {
     abstract fun bindMedicalRecordRepository(
         medicalRecordRepositoryImpl: MedicalRecordRepositoryImpl
     ): MedicalRecordRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindContactRequestRepository(
+        contactRequestRepositoryImpl: ContactRequestRepositoryImpl
+    ): ContactRequestRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindLostFoundRepository(
+        lostFoundRepositoryImpl: LostFoundRepositoryImpl
+    ): LostFoundRepository
 }

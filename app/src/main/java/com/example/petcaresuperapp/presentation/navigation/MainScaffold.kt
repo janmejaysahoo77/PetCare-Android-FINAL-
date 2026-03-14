@@ -39,7 +39,7 @@ fun MainScaffold(
     val bottomNavItems = listOf(
         BottomNavItem("Home", Screen.Home.route, Icons.Rounded.Home),
         BottomNavItem("Health", Screen.HealthCard.route, Icons.Rounded.HealthAndSafety),
-        BottomNavItem("Activity", Screen.ActivityTracker.route, Icons.Rounded.DirectionsRun),
+        BottomNavItem("Lost/Found", Screen.LostFound.route, Icons.Rounded.Search),
         BottomNavItem("Community", Screen.Community.route, Icons.Rounded.Groups),
         BottomNavItem("PetShop", Screen.Marketplace.route, Icons.Rounded.ShoppingCart)
     )
@@ -135,7 +135,7 @@ fun MainScaffold(
                 val bottomBarRoutes = listOf(
                     Screen.Home.route,
                     Screen.HealthCard.route,
-                    Screen.ActivityTracker.route,
+                    Screen.LostFound.route,
                     Screen.Community.route,
                     Screen.Marketplace.route
                 )
@@ -219,6 +219,20 @@ fun MainScaffold(
                         elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp)
                     ) {
                         Icon(Icons.Rounded.Add, contentDescription = "Add Pet", modifier = Modifier.size(28.dp))
+                    }
+                }
+                if (currentRoute == Screen.LostFound.route) {
+                    FloatingActionButton(
+                        onClick = { 
+                            navController.navigate(Screen.ReportPet.route)
+                        },
+                        containerColor = Primary2026,
+                        contentColor = Color.White,
+                        shape = RoundedCornerShape(20.dp),
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp)
+                    ) {
+                        Icon(Icons.Rounded.Add, contentDescription = "Report Pet", modifier = Modifier.size(28.dp))
                     }
                 }
             },

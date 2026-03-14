@@ -33,7 +33,7 @@ import com.example.petcaresuperapp.presentation.screens.vet.OpenStreetMapView
 import com.example.petcaresuperapp.data.model.VetAppointment
 import com.example.petcaresuperapp.data.model.MedicalRecord
 import com.example.petcaresuperapp.presentation.components.*
-import com.example.petcaresuperapp.service.AppointmentTrackingService
+import com.example.petcaresuperapp.service.PetCareNotificationService
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -417,7 +417,7 @@ fun VetAppointmentFragment(
                 viewModel.resetState()
 
                 // Start Foreground Tracking Service
-                val intent = Intent(context, AppointmentTrackingService::class.java).apply {
+                val intent = Intent(context, PetCareNotificationService::class.java).apply {
                     putExtra("APPOINTMENT_ID", appointmentId)
                 }
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
