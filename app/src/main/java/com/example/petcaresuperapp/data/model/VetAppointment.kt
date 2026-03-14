@@ -8,8 +8,7 @@ data class VetAppointment(
     val vetId: String = "",
     val vetName: String = "",
     val clinicName: String = "",
-    val appointmentDate: String = "",
-    val appointmentTime: String = "",
+    val appointmentTimestamp: Long = 0L,
     val problemDescription: String = "",
     val status: String = "pending",
     val createdAt: Long = System.currentTimeMillis()

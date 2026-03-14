@@ -5,17 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petcaresuperapp.domain.models.Comment
 import com.example.petcaresuperapp.domain.models.SocialPost
+import com.example.petcaresuperapp.domain.models.User
+import com.example.petcaresuperapp.domain.repository.AuthRepository
 import com.example.petcaresuperapp.domain.repository.SocialRepository
+import com.example.petcaresuperapp.core.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SocialViewModel @Inject constructor(
-    private val repository: SocialRepository
+    private val repository: SocialRepository,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _posts = MutableStateFlow<List<SocialPost>>(emptyList())
@@ -33,8 +38,51 @@ class SocialViewModel @Inject constructor(
     private val _comments = MutableStateFlow<List<Comment>>(emptyList())
     val comments: StateFlow<List<Comment>> = _comments.asStateFlow()
 
+    private val _users = MutableStateFlow<List<User>>(emptyList())
+    val users: StateFlow<List<User>> = _users.asStateFlow()
+
+    private val _currentUser = MutableStateFlow<User?>(null)
+    val currentUser: StateFlow<User?> = _currentUser.asStateFlow()
+
+    private val _currentUserId = MutableStateFlow<String?>(null)
+    val currentUserId: StateFlow<String?> = _currentUserId.asStateFlow()
+
     init {
+        loadCurrentUserId()
         loadPosts()
+        loadUsers()
+        loadCurrentUser()
+    }
+
+    private fun loadCurrentUserId() {
+        viewModelScope.launch {
+            repository.currentUserIdFlow.collect { uid ->
+                _currentUserId.value = uid
+                if (uid != null) {
+                    loadCurrentUser()
+                } else {
+                    _currentUser.value = null
+                }
+            }
+        }
+    }
+
+    private fun loadUsers() {
+        viewModelScope.launch {
+            repository.getUsers().collect { userList ->
+                _users.value = userList
+            }
+        }
+    }
+
+    private fun loadCurrentUser() {
+        viewModelScope.launch {
+            authRepository.getUserData().collectLatest { result ->
+                if (result is Resource.Success) {
+                    _currentUser.value = result.data
+                }
+            }
+        }
     }
 
     private fun loadPosts() {
@@ -89,6 +137,12 @@ class SocialViewModel @Inject constructor(
     fun addComment(postId: String, commentText: String) {
         viewModelScope.launch {
             repository.addComment(postId, commentText)
+        }
+    }
+
+    fun deletePost(postId: String) {
+        viewModelScope.launch {
+            repository.deletePost(postId)
         }
     }
 

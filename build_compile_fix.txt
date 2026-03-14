@@ -1,0 +1,146 @@
+﻿Reusing configuration cache.
+> Task :app:preBuild UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+
+> Task :app:compileDebugKotlin
+.\gradlew : e: file:///
+C:/temp/PetCareApp/app/
+src/main/java/com/examp
+le/petcaresuperapp/pres
+entation/screens/profil
+e/UserProfileScreen.kt:
+37:22 Type 'androidx.co
+mpose.runtime.State<com
+.example.petcaresuperap
+p.core.util.Resource<co
+m.example.petcaresupera
+pp.domain.models.User>>
+' has no method 
+'getValue(Nothing?, 
+KProperty0<*>)', so it 
+cannot serve as a 
+delegate.
+At line:1 char:1
++ .\gradlew 
+compileDebugKotlin 
+--console=plain 2>&1 | 
+Out-File -FilePat ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (e: file:///C:   
+ /t... as a delegat    
+e.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:69:24 One 
+type argument 
+expected. Use class 
+'Loading' if you don't 
+intend to pass type 
+arguments.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:74:24 One 
+type argument 
+expected. Use class 
+'Success' if you don't 
+intend to pass type 
+arguments.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:78:24 One 
+type argument 
+expected. Use class 
+'Error' if you don't 
+intend to pass type 
+arguments.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:80:50 One 
+type argument 
+expected. Use class 
+'Error' if you don't 
+intend to pass type 
+arguments.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:80:66 
+Unresolved reference 
+'message'.
+
+> Task :app:compileDebugKotlin FAILED
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:compileDebug
+Kotlin'.
+> A failure occurred 
+while executing org.jet
+brains.kotlin.compilerR
+unner.GradleCompilerRun
+nerWithWorkers$GradleKo
+tlinCompilerWorkAction
+   > Compilation 
+error. See log for 
+more details
+
+* Try:
+> Run with 
+--stacktrace option to 
+get the stack trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to 
+get full insights from 
+a Build Scan (powered 
+by Develocity).
+> Get more help at http
+s://help.gradle.org.
+
+BUILD FAILED in 23s
+17 actionable tasks: 1 executed, 16 up-to-date
+Configuration cache entry reused.

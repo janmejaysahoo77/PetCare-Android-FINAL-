@@ -11,58 +11,45 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.petcaresuperapp.data.model.VetAppointment
 import com.example.petcaresuperapp.ui.theme.*
-
-data class AppNotification(
-    val title: String,
-    val time: String,
-    val date: String,
-    val type: String,
-    val icon: ImageVector,
-    val color: Color
-)
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationScreen(navController: NavController) {
-    val notifications = listOf(
-        AppNotification("Heartworm Pill Reminder", "08:00 AM", "Today", "Health", Icons.Default.Medication, Accent2026),
-        AppNotification("Evening Walk", "06:30 PM", "Daily", "Activity", Icons.Default.DirectionsWalk, Primary2026),
-        AppNotification("Rabies Vaccine Appointment", "10:00 AM", "15 Oct 2024", "Health", Icons.Default.Vaccines, PrimaryColor),
-        AppNotification("Deworming Reminder", "09:00 AM", "20 Oct 2024", "Health", Icons.Default.Medication, SecondaryColor)
-    )
+fun NotificationScreen(
+    navController: NavController,
+    viewModel: NotificationViewModel = hiltViewModel()
+) {
+    val appointments by viewModel.appointments.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Notifications", fontWeight = FontWeight.Bold) },
+                title = { Text("Notifications", fontWeight = FontWeight.Bold, color = TextWhite) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null, tint = TextWhite)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BackgroundColor)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BackgroundDark)
             )
         },
-        containerColor = BackgroundColor,
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { /* TODO */ },
-                containerColor = PrimaryColor,
-                contentColor = Color.White
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Notification")
-            }
-        }
+        containerColor = BackgroundDark
     ) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -73,29 +60,38 @@ fun NotificationScreen(navController: NavController) {
             contentPadding = PaddingValues(top = 16.dp, bottom = 24.dp)
         ) {
             item {
-                NotificationHeader()
+                NotificationHeader(appointments.size)
             }
-            item {
-                Text(
-                    "Recent Updates",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimary
-                )
-            }
-            items(notifications) { notification ->
-                NotificationTile(notification)
+            
+            if (appointments.isEmpty()) {
+                item {
+                    Box(modifier = Modifier.fillMaxWidth().padding(40.dp), contentAlignment = Alignment.Center) {
+                        Text("No active appointments", color = TextGray)
+                    }
+                }
+            } else {
+                item {
+                    Text(
+                        "Live Tracking",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = TextWhite
+                    )
+                }
+                items(appointments) { appointment ->
+                    AppointmentTrackingTile(appointment)
+                }
             }
         }
     }
 }
 
 @Composable
-fun NotificationHeader() {
+fun NotificationHeader(activeCount: Int) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
-        color = Color.White,
+        color = SurfaceDark,
         shadowElevation = 2.dp
     ) {
         Row(
@@ -105,47 +101,105 @@ fun NotificationHeader() {
             Box(
                 modifier = Modifier
                     .size(48.dp)
-                    .background(PrimaryColor.copy(alpha = 0.1f), CircleShape),
+                    .background(Primary2026.copy(alpha = 0.1f), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(Icons.Default.NotificationsActive, contentDescription = null, tint = PrimaryColor)
+                Icon(Icons.Default.NotificationsActive, contentDescription = null, tint = Primary2026)
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column {
-                Text("All Caught Up!", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = TextPrimary)
-                Text("You have 4 active notifications.", fontSize = 12.sp, color = TextSecondary)
+                Text(if (activeCount > 0) "Updates Available" else "All Caught Up!", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = TextWhite)
+                Text("You have $activeCount active appointments.", fontSize = 12.sp, color = TextGray)
             }
         }
     }
 }
 
 @Composable
-fun NotificationTile(notification: AppNotification) {
+fun AppointmentTrackingTile(appointment: VetAppointment) {
+    val (progress, statusText, statusColor) = when (appointment.status.lowercase()) {
+        "pending" -> Triple(0.33f, "Waiting for Confirmation", Color(0xFFFFA000))
+        "confirmed" -> Triple(0.66f, "Appointment Confirmed", Secondary2026)
+        "completed" -> Triple(1.0f, "Completed", Primary2026)
+        "cancelled" -> Triple(0f, "Cancelled", Color.Red)
+        else -> Triple(0.33f, appointment.status.uppercase(), Color.Gray)
+    }
+
+    val timeString = try {
+        val sdf = SimpleDateFormat("dd MMM yyyy • hh:mm a", Locale.getDefault())
+        sdf.format(Date(appointment.appointmentTimestamp))
+    } catch (e: Exception) {
+        "Scheduled Time"
+    }
+
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White,
-        shadowElevation = 2.dp
+        color = SurfaceDark,
+        shadowElevation = 4.dp
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.padding(20.dp)
         ) {
-            Box(
-                modifier = Modifier
-                    .size(52.dp)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(notification.color.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(notification.icon, contentDescription = null, tint = notification.color)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(52.dp)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(Primary2026.copy(alpha = 0.1f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(Icons.Default.LocalHospital, contentDescription = null, tint = Primary2026)
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Vet: ${appointment.vetName}", fontWeight = FontWeight.Bold, fontSize = 16.sp, color = TextWhite)
+                    Text("Pet: ${appointment.petName}", fontSize = 13.sp, color = TextGray)
+                }
+                
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = statusColor.copy(alpha = 0.1f)
+                ) {
+                    Text(
+                        appointment.status.uppercase(),
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = statusColor
+                    )
+                }
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(notification.title, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = TextPrimary)
-                Text("${notification.date} • ${notification.time}", fontSize = 12.sp, color = TextSecondary)
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Schedule, contentDescription = null, tint = TextGray, modifier = Modifier.size(16.dp))
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(timeString, fontSize = 13.sp, color = TextGray)
             }
-            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = TextGrey)
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            // Progress Bar
+            Column(modifier = Modifier.fillMaxWidth()) {
+                LinearProgressIndicator(
+                    progress = { progress },
+                    modifier = Modifier.fillMaxWidth().height(8.dp).clip(CircleShape),
+                    color = statusColor,
+                    trackColor = Color.White.copy(alpha = 0.05f),
+                    strokeCap = StrokeCap.Round
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Pending", fontSize = 10.sp, color = if (progress >= 0.33f) TextWhite else TextGray)
+                    Text("Confirmed", fontSize = 10.sp, color = if (progress >= 0.66f) TextWhite else TextGray)
+                    Text("Completed", fontSize = 10.sp, color = if (progress >= 1.0f) TextWhite else TextGray)
+                }
+            }
         }
     }
 }

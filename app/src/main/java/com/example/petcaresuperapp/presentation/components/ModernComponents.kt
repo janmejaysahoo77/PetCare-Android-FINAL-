@@ -170,12 +170,15 @@ fun PostCard(
     likeCount: Int,
     commentCount: Int,
     isLiked: Boolean,
+    isOwnPost: Boolean = false,
+    onDeleteClick: () -> Unit = {},
     onLikeClick: () -> Unit,
     onCommentClick: () -> Unit,
     onDoubleTapLike: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     var showHeartOverlay by remember { mutableStateOf(false) }
+    var showMenu by remember { mutableStateOf(false) }
     
     val bounceScale by animateFloatAsState(
         targetValue = if (isLiked) 1.2f else 1f,
@@ -186,39 +189,81 @@ fun PostCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 12.dp)
             .background(SurfaceDark)
-            .clip(RoundedCornerShape(RoundedCornersLarge))
+            .padding(vertical = 8.dp)
+            .animateContentSize()
     ) {
         // Header
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 12.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = userProfileImage.ifEmpty { "https://i.pravatar.cc/150" },
-                contentDescription = null,
+            Box(
                 modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape),
-                contentScale = ContentScale.Crop
-            )
+                    .size(42.dp)
+                    .background(
+                        brush = Brush.linearGradient(listOf(Primary2026, Secondary2026)),
+                        shape = CircleShape
+                    )
+                    .padding(2.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                AsyncImage(
+                    model = userProfileImage.ifEmpty { "https://i.pravatar.cc/150" },
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+            }
             Spacer(modifier = Modifier.width(12.dp))
-            Text(
-                userName,
-                style = Typography.labelLarge,
-                color = TextWhite,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { /* More options */ }) {
-                Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = TextWhite)
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    userName,
+                    style = Typography.labelLarge,
+                    color = TextWhite,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    "2 hours ago",
+                    style = Typography.labelSmall,
+                    color = TextGray
+                )
+            }
+            Box {
+                IconButton(onClick = { showMenu = true }) {
+                    Icon(Icons.Default.MoreVert, contentDescription = "Options", tint = TextWhite)
+                }
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false },
+                    modifier = Modifier.background(SurfaceVariantDark)
+                ) {
+                    if (isOwnPost) {
+                        DropdownMenuItem(
+                            text = { Text("Delete Post", color = Error2026) },
+                            onClick = {
+                                showMenu = false
+                                onDeleteClick()
+                            },
+                            leadingIcon = { Icon(Icons.Default.Delete, contentDescription = null, tint = Error2026) }
+                        )
+                    }
+                    DropdownMenuItem(
+                        text = { Text("Report", color = TextWhite) },
+                        onClick = { showMenu = false },
+                        leadingIcon = { Icon(Icons.Default.Report, contentDescription = null, tint = TextWhite) }
+                    )
+                }
             }
         }
 
-        // Image with Interaction (Simulated double tap should be handled by caller or here)
+        // Image
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -232,19 +277,17 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
             
-            Column {
-                androidx.compose.animation.AnimatedVisibility(
-                    visible = showHeartOverlay,
-                    enter = scaleIn(animationSpec = spring(Spring.DampingRatioMediumBouncy)) + fadeIn(),
-                    exit = scaleOut() + fadeOut()
-                ) {
-                    Icon(
-                        Icons.Filled.Favorite,
-                        contentDescription = null,
-                        tint = Color.White.copy(alpha = 0.9f),
-                        modifier = Modifier.size(120.dp)
-                    )
-                }
+            androidx.compose.animation.AnimatedVisibility(
+                visible = showHeartOverlay,
+                enter = scaleIn(animationSpec = spring(Spring.DampingRatioMediumBouncy)) + fadeIn(),
+                exit = scaleOut() + fadeOut()
+            ) {
+                Icon(
+                    Icons.Filled.Favorite,
+                    contentDescription = null,
+                    tint = Color.White.copy(alpha = 0.9f),
+                    modifier = Modifier.size(100.dp)
+                )
             }
         }
 
@@ -252,7 +295,7 @@ fun PostCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 8.dp),
+                .padding(horizontal = 6.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = onLikeClick) {
@@ -260,30 +303,34 @@ fun PostCard(
                     imageVector = if (isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     contentDescription = null,
                     tint = if (isLiked) Color.Red else TextWhite,
-                    modifier = Modifier.size(30.dp).scale(bounceScale)
+                    modifier = Modifier.size(28.dp).scale(bounceScale)
                 )
             }
             IconButton(onClick = onCommentClick) {
-                Icon(Icons.Outlined.ModeComment, contentDescription = null, tint = TextWhite, modifier = Modifier.size(26.dp))
+                Icon(Icons.Outlined.ModeComment, contentDescription = null, tint = TextWhite, modifier = Modifier.size(24.dp))
             }
             IconButton(onClick = { /* Share */ }) {
-                Icon(Icons.Outlined.Share, contentDescription = null, tint = TextWhite, modifier = Modifier.size(26.dp))
+                Icon(Icons.Outlined.Send, contentDescription = null, tint = TextWhite, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { /* Bookmark */ }) {
-                Icon(Icons.Outlined.BookmarkBorder, contentDescription = null, tint = TextWhite, modifier = Modifier.size(28.dp))
+                Icon(Icons.Outlined.BookmarkBorder, contentDescription = null, tint = TextWhite, modifier = Modifier.size(26.dp))
             }
         }
 
         // Stats & Caption
-        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) {
-            Text(
-                "$likeCount likes",
-                style = Typography.labelLarge,
-                color = TextWhite,
-                fontWeight = FontWeight.Bold
-            )
+        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)) {
+            if (likeCount > 0) {
+                Text(
+                    "${String.format("%,d", likeCount)} likes",
+                    style = Typography.labelLarge,
+                    color = TextWhite,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            
             Spacer(modifier = Modifier.height(4.dp))
+            
             Row {
                 Text(
                     userName,
@@ -295,19 +342,30 @@ fun PostCard(
                 Text(
                     caption,
                     style = Typography.bodyMedium,
-                    color = TextWhite
+                    color = TextWhite,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
+            
             if (commentCount > 0) {
                 Text(
                     "View all $commentCount comments",
                     style = Typography.bodySmall,
                     color = TextGray,
-                    modifier = Modifier.padding(vertical = 4.dp).clickable { onCommentClick() }
+                    modifier = Modifier
+                        .padding(vertical = 6.dp)
+                        .clickable { onCommentClick() }
                 )
             }
+            
+            Text(
+                "MARCH 14",
+                style = Typography.labelSmall,
+                color = TextGray,
+                fontSize = 10.sp
+            )
         }
-        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 

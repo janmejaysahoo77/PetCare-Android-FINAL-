@@ -84,6 +84,10 @@ dependencies {
     implementation(libs.zxing)
     implementation(libs.cloudinary.android)
 
+    // OpenStreetMap
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
+    implementation("org.osmdroid:osmdroid-wms:6.1.16")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

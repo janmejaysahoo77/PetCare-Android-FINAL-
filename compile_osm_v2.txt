@@ -1,0 +1,34 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Reusing configuration cache.
+> Task :app:preBuild UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:kaptGenerateStubsDebugKotlin
+w: Kapt currently doesn't support language version 2.0+. Falling back to 1.9.
+
+> Task :app:kaptDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/HealthCardScreen.kt:72:43 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/OpenStreetMapView.kt:3:8 'class PreferenceManager : Any' is deprecated. Deprecated in Java.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/OpenStreetMapView.kt:35:13 'class PreferenceManager : Any' is deprecated. Deprecated in Java.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/OpenStreetMapView.kt:35:31 'static fun getDefaultSharedPreferences(p0: Context!): SharedPreferences!' is deprecated. Deprecated in Java.
+
+BUILD SUCCESSFUL in 1m 56s
+17 actionable tasks: 2 executed, 15 up-to-date
+Configuration cache entry reused.

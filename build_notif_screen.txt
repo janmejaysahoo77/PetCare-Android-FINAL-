@@ -1,0 +1,327 @@
+﻿> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest FROM-CACHE
+> Task :app:processDebugManifest FROM-CACHE
+> Task :app:processDebugManifestForPackage FROM-CACHE
+> Task :app:processDebugResources FROM-CACHE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin
+w: Kapt currently doesn't support language version 2.0+. Falling back to 1.9.
+
+> Task :app:kaptDebugKotlin
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac
+> Task :app:hiltAggregateDepsDebug
+> Task :app:hiltJavaCompileDebug
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:transformDebugClassesWithAsm
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+.\gradlew : The message 
+received from the daemon 
+indicates that the daemon 
+has disappeared.
+At line:1 char:1
++ .\gradlew assembleDebug 
+--console=plain 
+--no-configuration-cache 
+2>&1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (The  
+   message rec...as disa   
+ ppeared.:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Build request sent: Build{i
+d=c7a88d7b-7fb2-4d35-95f6-6
+5ba9650a535, currentDir=C:\
+temp\PetCareApp}
+Attempting to read last 
+messages from the daemon 
+log...
+Daemon pid: 16352
+  log file: C:\Users\janme\
+.gradle\daemon\9.3.1\daemon
+-16352.out.log
+----- Last 20 lines from 
+daemon log file - 
+daemon-16352.out.log -----
+2026-03-14T06:52:34.821+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.DefaultDa
+emonConnection] thread 
+1703: Received non-IO 
+message from client: Build{
+id=c7a88d7b-7fb2-4d35-95f6-
+65ba9650a535, currentDir=C:
+\temp\PetCareApp}
+2026-03-14T06:52:34.826+053
+0 [INFO] [org.gradle.launch
+er.daemon.server.DefaultInc
+omingConnectionHandler] 
+Received command: Build{id=
+c7a88d7b-7fb2-4d35-95f6-65b
+a9650a535, currentDir=C:\te
+mp\PetCareApp}.
+2026-03-14T06:52:34.828+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.DefaultIn
+comingConnectionHandler] 
+Starting executing 
+command: Build{id=c7a88d7b-
+7fb2-4d35-95f6-65ba9650a535
+, currentDir=C:\temp\PetCar
+eApp} with connection: 
+socket connection from 
+/127.0.0.1:61729 to 
+/127.0.0.1:54898.
+2026-03-14T06:52:34.857+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.DaemonSta
+teCoordinator] Command 
+execution: started DaemonCo
+mmandExecution[command = Bu
+ild{id=c7a88d7b-7fb2-4d35-9
+5f6-65ba9650a535, currentDi
+r=C:\temp\PetCareApp}, 
+connection = 
+DefaultDaemonConnection: 
+socket connection from 
+/127.0.0.1:61729 to 
+/127.0.0.1:54898] after 
+4.86575 minutes of idle
+2026-03-14T06:52:34.859+053
+0 [INFO] [org.gradle.launch
+er.daemon.server.DaemonRegi
+stryUpdater] Marking the 
+daemon as busy, address: [a
+a6660ba-5db2-4354-8658-fb89
+8de36dff port:61729, addres
+ses:[localhost/127.0.0.1]]
+2026-03-14T06:52:34.861+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.registry.Persist
+entDaemonRegistry] Marking 
+busy by address: [aa6660ba-
+5db2-4354-8658-fb898de36dff
+ port:61729, addresses:[loc
+alhost/127.0.0.1]]
+2026-03-14T06:52:35.270+053
+0 [DEBUG] [org.gradle.cache
+.internal.DefaultFileLockMa
+nager] Waiting to acquire 
+exclusive lock on daemon 
+addresses registry.
+2026-03-14T06:52:35.295+053
+0 [DEBUG] [org.gradle.cache
+.internal.DefaultFileLockMa
+nager] Lock acquired on 
+daemon addresses registry.
+2026-03-14T06:52:35.404+053
+0 [DEBUG] [org.gradle.cache
+.internal.DefaultFileLockMa
+nager] Releasing lock on 
+daemon addresses registry.
+2026-03-14T06:52:35.533+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.DaemonSta
+teCoordinator] resetting 
+idle timer
+2026-03-14T06:52:35.536+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.DaemonSta
+teCoordinator] daemon is 
+running. Sleeping until 
+state changes.
+2026-03-14T06:52:35.546+053
+0 [INFO] [org.gradle.launch
+er.daemon.server.exec.Start
+BuildOrRespondWithBusy] 
+Daemon is about to start 
+building Build{id=c7a88d7b-
+7fb2-4d35-95f6-65ba9650a535
+, currentDir=C:\temp\PetCar
+eApp}. Dispatching build 
+started information...
+2026-03-14T06:52:35.549+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.Synchroni
+zedDispatchConnection] 
+thread 1705: dispatching or
+g.gradle.launcher.daemon.pr
+otocol.BuildStarted@2d2cab9
+2
+2026-03-14T06:52:35.598+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.exec.Esta
+blishBuildEnvironment] 
+Configuring env variables: 
+[USERDOMAIN_ROAMINGPROFILE,
+ JAVA HOME, 
+PROCESSOR_LEVEL, 
+SESSIONNAME, 
+ALLUSERSPROFILE, 
+PROCESSOR_ARCHITECTURE, VSC
+ODE_PYTHON_AUTOACTIVATE_GUA
+RD, VSCODE_GIT_IPC_HANDLE, 
+PSModulePath, SystemDrive, 
+=ExitCode, 
+VSCODE_INJECTION, 
+COLORTERM, DIRNAME, 
+USERNAME, 
+VSCODE_GIT_ASKPASS_NODE, 
+TERM_PROGRAM_VERSION, 
+ProgramFiles(x86), 
+GIT_ASKPASS, 
+CHROME_CRASHPAD_PIPE_NAME, 
+EFC_8084, FPS_BROWSER_USER_
+PROFILE_STRING, APP_HOME, 
+DEFAULT_JVM_OPTS, PATHEXT, 
+DriverData, IntelliJ IDEA 
+Community Edition, PAGER, 
+ProgramData, ProgramW6432, 
+HOMEPATH, 
+PROCESSOR_IDENTIFIER, 
+ProgramFiles, PUBLIC, 
+windir, LOCALAPPDATA, 
+USERDOMAIN, FPS_BROWSER_APP
+_PROFILE_STRING, 
+LOGONSERVER, PROMPT, LANG, 
+VSCODE_GIT_ASKPASS_MAIN, 
+OneDrive, =C:, APPDATA, VBO
+X_HWVIRTEX_IGNORE_SVM_IN_US
+E, JAVA_EXE, VSCODE_GIT_ASK
+PASS_EXTRA_ARGS, 
+CommonProgramFiles, Path, 
+ANTIGRAVITY_CLI_ALIAS, OS, 
+TERM_PROGRAM, VSCODE_JDWP_A
+DAPTER_ENDPOINTS, 
+COMPUTERNAME, 
+PROCESSOR_REVISION, 
+CommonProgramW6432, 
+ComSpec, APP_BASE_NAME, 
+SystemRoot, TEMP, 
+HOMEDRIVE, USERPROFILE, 
+TMP, 
+CommonProgramFiles(x86), 
+NUMBER_OF_PROCESSORS, 
+ANTIGRAVITY_AGENT, 
+VSCODE_JAVA_EXEC]
+2026-03-14T06:52:35.667+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.exec.LogT
+oClient] About to start 
+relaying all logs to the 
+client via the connection.
+2026-03-14T06:52:35.682+053
+0 [INFO] [org.gradle.launch
+er.daemon.server.exec.LogTo
+Client] The client will 
+now receive all logging 
+from the daemon (pid: 
+16352). The daemon log 
+file: C:\Users\janme\.gradl
+e\daemon\9.3.1\daemon-16352
+.out.log
+2026-03-14T06:52:35.787+053
+0 [INFO] [org.gradle.launch
+er.daemon.server.exec.LogAn
+dCheckHealth] Starting 
+17th build in daemon 
+[uptime: 1 hrs 1 mins 
+22.177 secs, performance: 
+94%, GC rate: 0.00/s, heap 
+usage: 0% of 4 GiB]
+2026-03-14T06:52:35.813+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.exec.Exec
+uteBuild] The daemon has 
+started executing the 
+build.
+2026-03-14T06:52:35.821+053
+0 [DEBUG] [org.gradle.launc
+her.daemon.server.exec.Exec
+uteBuild] Executing build 
+with daemon context: Defaul
+tDaemonContext[uid=fe754f1b
+-460b-4703-a033-e8031d1ec35
+0,javaHome=C:\Program 
+Files\Android\Android Studi
+o2\jbr,javaVersion=21,javaV
+endor=JetBrains s.r.o.,daem
+onRegistryDir=C:\Users\janm
+e\.gradle\daemon,pid=16352,
+idleTimeout=10800000,priori
+ty=NORMAL,applyInstrumentat
+ionAgent=true,nativeService
+sMode=ENABLED,daemonOpts=-X
+mx4096m,-Dfile.encoding=UTF
+-8,-Duser.country=IN,-Duser
+.language=en,-Duser.variant
+]
+w: Kapt currently doesn't 
+support language version 
+2.0+. Falling back to 
+1.9.----- End of the 
+daemon log -----
+
+JVM crash log found: file:/
+//C:/temp/PetCareApp/hs_err
+_pid16352.log
+
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+Gradle build daemon 
+disappeared unexpectedly 
+(it may have been killed 
+or may have crashed)
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or 
+--debug option to get more 
+log output.
+> Run with --scan to get 
+full insights from a Build 
+Scan (powered by 
+Develocity).
+> Get more help at 
+https://help.gradle.org.
+> Task :app:mergeProjectDexDebug

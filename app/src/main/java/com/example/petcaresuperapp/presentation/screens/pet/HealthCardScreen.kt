@@ -1,5 +1,6 @@
 package com.example.petcaresuperapp.presentation.screens.pet
 
+import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,11 +29,15 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.petcaresuperapp.ui.theme.*
+import com.example.petcaresuperapp.presentation.screens.vet.OpenStreetMapView
 import com.example.petcaresuperapp.data.model.VetAppointment
 import com.example.petcaresuperapp.data.model.MedicalRecord
 import com.example.petcaresuperapp.presentation.components.*
+import com.example.petcaresuperapp.service.AppointmentTrackingService
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 data class Vaccination(
     val name: String,
@@ -120,7 +125,7 @@ fun HealthCardScreen(
 
                 when (page) {
                     0 -> HealthRecordsFragment(healthViewModel)
-                    1 -> VetAppointmentFragment(vetViewModel)
+                    1 -> VetAppointmentFragment(vetViewModel, navController)
                 }
             }
         }
@@ -392,9 +397,13 @@ fun HealthSummary() {
 }
 
 @Composable
-fun VetAppointmentFragment(viewModel: VetAppointmentViewModel) {
+fun VetAppointmentFragment(
+    viewModel: VetAppointmentViewModel,
+    navController: NavController
+) {
     val context = LocalContext.current
     val bookingState by viewModel.bookingState.collectAsState()
+    val doctors by viewModel.doctors.collectAsState()
     
     var showBookingDialog by remember { mutableStateOf(false) }
     var selectedVet by remember { mutableStateOf<Pair<String, String>?>(null) } // Pair of VetId, VetName
@@ -402,9 +411,20 @@ fun VetAppointmentFragment(viewModel: VetAppointmentViewModel) {
     LaunchedEffect(bookingState) {
         when (bookingState) {
             is BookingState.Success -> {
+                val appointmentId = (bookingState as BookingState.Success).appointmentId
                 Toast.makeText(context, "Appointment booked successfully", Toast.LENGTH_SHORT).show()
                 showBookingDialog = false
                 viewModel.resetState()
+
+                // Start Foreground Tracking Service
+                val intent = Intent(context, AppointmentTrackingService::class.java).apply {
+                    putExtra("APPOINTMENT_ID", appointmentId)
+                }
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    context.startForegroundService(intent)
+                } else {
+                    context.startService(intent)
+                }
             }
             is BookingState.Error -> {
                 Toast.makeText(context, (bookingState as BookingState.Error).message, Toast.LENGTH_SHORT).show()
@@ -420,13 +440,20 @@ fun VetAppointmentFragment(viewModel: VetAppointmentViewModel) {
             isLoading = bookingState is BookingState.Loading,
             onDismiss = { showBookingDialog = false },
             onConfirm = { petName, date, time, description ->
+                // Parse date and time to timestamp
+                val timestamp = try {
+                    val format = SimpleDateFormat("dd MMM yyyy hh:mm a", Locale.getDefault())
+                    format.parse("$date $time")?.time ?: System.currentTimeMillis()
+                } catch (e: Exception) {
+                    System.currentTimeMillis()
+                }
+
                 viewModel.bookAppointment(
                     VetAppointment(
                         petName = petName,
                         vetId = selectedVet!!.first,
                         vetName = selectedVet!!.second,
-                        appointmentDate = date,
-                        appointmentTime = time,
+                        appointmentTimestamp = timestamp,
                         problemDescription = description
                     )
                 )
@@ -456,36 +483,32 @@ fun VetAppointmentFragment(viewModel: VetAppointmentViewModel) {
         }
 
         item {
+            OpenStreetMapView(
+                doctors = doctors,
+                navController = navController
+            )
+        }
+
+        items(doctors) { doctor ->
             VetCardPlaceholder(
-                name = "Dr. John Smith",
-                specialty = "General Veterinarian",
-                rating = "4.9 (120 reviews)"
+                name = doctor.name,
+                specialty = doctor.specialty,
+                rating = doctor.rating
             ) { vetName ->
-                selectedVet = Pair("vet_001", vetName)
+                selectedVet = Pair(doctor.uid, vetName)
                 showBookingDialog = true
             }
         }
-        item {
-            VetCardPlaceholder(
-                name = "Dr. Emily Davis",
-                specialty = "Pet Surgeon",
-                rating = "4.8 (95 reviews)"
-            ) { vetName ->
-                selectedVet = Pair("vet_002", vetName)
-                showBookingDialog = true
+        
+        if (doctors.isEmpty()) {
+            item {
+                Box(modifier = Modifier.fillMaxWidth().padding(40.dp), contentAlignment = Alignment.Center) {
+                    Text("No doctors found nearby", color = TextGray)
+                }
             }
         }
-        item {
-            VetCardPlaceholder(
-                name = "Dr. Michael Lee",
-                specialty = "Pet Dermatologist",
-                rating = "4.7 (80 reviews)"
-            ) { vetName ->
-                selectedVet = Pair("vet_003", vetName)
-                showBookingDialog = true
-            }
-        }
-        item { Spacer(modifier = Modifier.height(60.dp)) }
+
+        item { Spacer(modifier = Modifier.height(80.dp)) }
     }
 }
 

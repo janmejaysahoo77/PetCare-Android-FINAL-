@@ -1,0 +1,2061 @@
+﻿Reusing configuration cache.
+> Task :app:preBuild UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+.\gradlew : e: file:///
+C:/temp/PetCareApp/app/
+src/main/java/com/examp
+le/petcaresuperapp/pres
+entation/components/Mod
+ernComponents.kt:259:90
+ None of the following 
+candidates is 
+applicable:
+At line:1 char:1
++ .\gradlew 
+assembleDebug 
+--console=plain > 
+build_errors.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : 
+NotSpecified: (e:     
+file:///C:/t... is app 
+   licable::String) 
+[], R    emoteException
+    + 
+FullyQualifiedErrorI   
+ d : NativeCommandError
+ 
+
+val Icons.Filled.Favori
+teBorder: ImageVector
+val Icons.Rounded.Favor
+iteBorder: ImageVector
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/com
+ponents/ModernComponent
+s.kt:266:37 None of 
+the following 
+candidates is 
+applicable:
+> Task :app:compileDebugKotlin
+val Icons.Filled.ModeCo
+mment: ImageVector
+val Icons.Rounded.ModeC
+omment: ImageVector
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/com
+ponents/ModernComponent
+s.kt:269:37 None of 
+the following 
+candidates is 
+applicable:
+val 
+Icons.Filled.Share: 
+ImageVector
+val 
+Icons.Rounded.Share: 
+ImageVector
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/com
+ponents/ModernComponent
+s.kt:273:37 None of 
+the following 
+candidates is 
+applicable:
+val Icons.Filled.Bookma
+rkBorder: ImageVector
+val Icons.Rounded.Bookm
+arkBorder: ImageVector
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/MainScaffold.kt
+:140:26 Unresolved 
+reference 'border'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:127
+:33 Unresolved 
+reference 'spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:127
+:55 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:127
+:96 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:128
+:40 Unresolved 
+reference 'tween'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:133
+:33 Unresolved 
+reference 'spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:133
+:55 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:133
+:96 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:134
+:41 Unresolved 
+reference 'tween'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:139
+:33 Unresolved 
+reference 'spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:139
+:55 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:139
+:96 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:140
+:40 Unresolved 
+reference 'tween'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:145
+:33 Unresolved 
+reference 'spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:145
+:55 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:145
+:96 Unresolved 
+reference 'Spring'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/nav
+igation/NavGraph.kt:146
+:41 Unresolved 
+reference 'tween'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionA
+pplicationScreen.kt:97:
+40 Unresolved 
+reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionD
+etailScreen.kt:58:94 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionD
+etailScreen.kt:144:77 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionD
+etailScreen.kt:147:90 
+Unresolved reference 
+'SuccessGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionD
+etailScreen.kt:154:89 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionD
+etailScreen.kt:189:75 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/AdoptionL
+istScreen.kt:153:32 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/SuccessSt
+oriesScreen.kt:88:33 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/SuccessSt
+oriesScreen.kt:91:80 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/adoption/SuccessSt
+oriesScreen.kt:100:64 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/ai/AiAssistantScre
+en.kt:38:98 Unresolved 
+reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/ai/AiAssistantScre
+en.kt:39:107 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/ai/AiAssistantScre
+en.kt:118:52 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/ai/AiAssistantScre
+en.kt:200:80 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ChatScre
+en.kt:53:45 Unresolved 
+reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ChatScre
+en.kt:58:70 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ChatScre
+en.kt:107:83 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ChatScre
+en.kt:116:52 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ChatScre
+en.kt:162:25 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:36:16 
+Unresolved reference 
+'CommunityViewModel'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:36:37 
+Cannot infer type for 
+this parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:38:18 
+Cannot infer type for 
+this parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:38:18 
+Property delegate must 
+have a 
+'getValue(Nothing?, 
+KProperty0<ERROR 
+CLASS: Cannot infer 
+argument for type 
+parameter T>)' method. 
+None of the following 
+functions is 
+applicable:
+fun <T> State<T>.getVal
+ue(thisObj: Any?, 
+property: 
+KProperty<*>): T
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:38:28 
+Unresolved reference 
+'posts'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:38:34 
+Cannot infer type for 
+this parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:39:22 
+Cannot infer type for 
+this parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:39:22 
+Property delegate must 
+have a 
+'getValue(Nothing?, 
+KProperty0<ERROR 
+CLASS: Cannot infer 
+argument for type 
+parameter T>)' method. 
+None of the following 
+functions is 
+applicable:
+fun <T> State<T>.getVal
+ue(thisObj: Any?, 
+property: 
+KProperty<*>): T
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:39:32 
+Unresolved reference 
+'isLoading'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:39:42 
+Cannot infer type for 
+this parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:64:36 
+Overload resolution 
+ambiguity between 
+candidates:
+fun <T> Array<out 
+T>.isEmpty(): Boolean
+fun 
+ByteArray.isEmpty(): 
+Boolean
+fun 
+ShortArray.isEmpty(): 
+Boolean
+fun 
+IntArray.isEmpty(): 
+Boolean
+fun 
+LongArray.isEmpty(): 
+Boolean
+fun 
+FloatArray.isEmpty(): 
+Boolean
+fun 
+DoubleArray.isEmpty(): 
+Boolean
+fun BooleanArray.isEmpt
+y(): Boolean
+fun 
+CharArray.isEmpty(): 
+Boolean
+fun CharSequence.isEmpt
+y(): Boolean
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:76:45 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:78:45 
+Unresolved reference 
+'userName'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:79:53 
+Unresolved reference 
+'userProfileUrl'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:80:45 
+Unresolved reference 
+'imageUrl'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:81:44 
+Unresolved reference 
+'content'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:82:46 
+Unresolved reference 
+'likes'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:83:49 
+Unresolved reference 
+'commentsCount'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:84:44 
+Unresolved reference 
+'likes'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:85:55 
+Unresolved reference 
+'toggleLike'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:85:71 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:86:94 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:87:59 
+Unresolved reference 
+'toggleLike'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/Communit
+yFeedScreen.kt:87:75 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:55:34 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:100:51 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:100:87 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:108:54 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:108:71 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:117:59 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/LostFoun
+dScreen.kt:117:76 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ReportPe
+tScreen.kt:117:54 
+Unresolved reference 
+'AccentGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ReportPe
+tScreen.kt:117:74 
+Unresolved reference 
+'SuccessGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/ReportPe
+tScreen.kt:131:91 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/RescueFo
+rumScreen.kt:142:60 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/RescueFo
+rumScreen.kt:160:126 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/RescueFo
+rumScreen.kt:161:73 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/RescueFo
+rumScreen.kt:163:119 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/community/RescueFo
+rumScreen.kt:164:71 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Adoptio
+nRequestDetailScreen.kt
+:63:36 Unresolved 
+reference 
+'SuccessGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Adoptio
+nRequestDetailScreen.kt
+:114:73 Unresolved 
+reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Adoptio
+nRequestDetailScreen.kt
+:129:75 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Adoptio
+nRequestDetailScreen.kt
+:158:65 Unresolved 
+reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Adoptio
+nRequestDetailScreen.kt
+:165:78 Unresolved 
+reference 'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:74:3
+2 Unresolved reference 
+'SuccessGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:100:
+21 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:150:
+35 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:151:
+34 Unresolved 
+reference 
+'AccentGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:152:
+29 Unresolved 
+reference 
+'SecondaryGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:158:
+39 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:159:
+38 Unresolved 
+reference 
+'AccentGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/Shelter
+DashboardScreen.kt:160:
+33 Unresolved 
+reference 
+'SecondaryGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/StoreDa
+shboardScreen.kt:112:89
+ Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/StoreDa
+shboardScreen.kt:116:89
+ Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/StoreDa
+shboardScreen.kt:157:33
+ Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/StoreDa
+shboardScreen.kt:165:37
+ Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:104:21 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:157:66 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:158:39 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:162:61 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:162:83 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:177:17 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:178:65 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:184:75 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/dashboards/VetDash
+boardScreen.kt:187:77 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/discovery/Discover
+yMapScreen.kt:56:94 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/discovery/Discover
+yMapScreen.kt:58:100 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/discovery/Discover
+yMapScreen.kt:97:41 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/discovery/Discover
+yMapScreen.kt:100:84 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/education/Educatio
+nScreen.kt:90:33 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/education/Educatio
+nScreen.kt:92:33 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/emergency/Emergenc
+ySosScreen.kt:68:28 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/emergency/Emergenc
+ySosScreen.kt:94:75 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/emergency/Emergenc
+ySosScreen.kt:108:29 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/emergency/Emergenc
+ySosScreen.kt:121:29 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/emergency/Emergenc
+ySosScreen.kt:132:50 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/gamification/Achie
+vementsScreen.kt:38:67 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/gamification/Achie
+vementsScreen.kt:43:68 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/gamification/Leade
+rboardScreen.kt:161:41 
+Unresolved reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:51:25 Unresolved 
+reference 
+'BackgroundDark'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:61:40 Unresolved 
+reference 
+'displayLarge'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:62:29 Unresolved 
+reference 'TextWhite'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:66:40 Unresolved 
+reference 'bodyMedium'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:67:29 Unresolved 
+reference 'TextGray'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:98:40 Unresolved 
+reference 'titleLarge'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:99:29 Unresolved 
+reference 'TextWhite'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:119:33 Unresolved 
+reference 
+'Primary2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:138:36 Unresolved 
+reference 'titleLarge'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:139:25 Unresolved 
+reference 'TextWhite'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:147:69 Unresolved 
+reference 
+'Primary2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:152:62 Unresolved 
+reference 'Info2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:157:62 Unresolved 
+reference 
+'Secondary2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:178:17 Unresolved 
+reference 
+'SurfaceDark'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:196:44 Unresolved 
+reference 'labelLarge'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:196:64 Unresolved 
+reference 'TextWhite'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:208:36 Unresolved 
+reference 
+'RoundedCornersLarge'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:209:17 Unresolved 
+reference 
+'SurfaceDark'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:209:17 Argument type 
+mismatch: actual type 
+is 'androidx.compose.an
+imation.core.AnimationS
+tate<kotlin.Float, andr
+oidx.compose.animation.
+core.AnimationVector1D>
+', but 'androidx.compos
+e.ui.graphics.Color' 
+was expected.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:210:46 None of the 
+following candidates 
+is applicable:
+fun 
+BorderStroke(width: 
+Dp, color: Color): 
+BorderStroke
+constructor(width: Dp, 
+brush: Brush): 
+BorderStroke
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:210:65 Unresolved 
+reference 
+'Primary2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:212:9 @Composable 
+invocations can only 
+happen from the 
+context of a 
+@Composable function
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:217:77 Unresolved 
+reference 
+'Primary2026'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:221:36 Unresolved 
+reference 
+'titleMedium'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/home/HomeScreen.kt
+:222:25 Unresolved 
+reference 'TextWhite'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:53:22 
+Argument type 
+mismatch: actual type 
+is 'kotlin.collections.
+List<kotlin.Any>', but 
+'kotlin.collections.Lis
+t<androidx.compose.ui.g
+raphics.Color>' was 
+expected.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:53:29 
+Unresolved reference 
+'PrimaryLight'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:59:22 
+Argument type 
+mismatch: actual type 
+is 'kotlin.collections.
+List<kotlin.Any>', but 
+'kotlin.collections.Lis
+t<androidx.compose.ui.g
+raphics.Color>' was 
+expected.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:59:29 
+Unresolved reference 
+'SecondaryLight'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:65:22 
+Argument type 
+mismatch: actual type 
+is 'kotlin.collections.
+List<kotlin.Any>', but 
+'kotlin.collections.Lis
+t<androidx.compose.ui.g
+raphics.Color>' was 
+expected.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/onboarding/Onboard
+ingScreen.kt:65:29 
+Unresolved reference 
+'AccentLight'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/ActivityTracke
+rScreen.kt:68:29 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/ActivityTracke
+rScreen.kt:97:94 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/ActivityTracke
+rScreen.kt:105:25 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/ActivityTracke
+rScreen.kt:106:30 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/ActivityTracke
+rScreen.kt:160:29 
+Unresolved reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/AddPetScreen.k
+t:305:91 Unresolved 
+reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/BlockchainIden
+tityScreen.kt:106:117 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/BlockchainIden
+tityScreen.kt:115:25 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/BlockchainIden
+tityScreen.kt:116:73 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/BlockchainIden
+tityScreen.kt:119:82 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/BlockchainIden
+tityScreen.kt:155:50 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:59:32 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:61:58 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:103:37 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:110:79 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:112:56 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:125:78 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:129:47 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:141:49 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/GpsTrackingScr
+een.kt:144:96 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/HealthAnalytic
+sScreen.kt:54:47 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/HealthAnalytic
+sScreen.kt:69:29 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/NotificationSc
+reen.kt:38:109 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/NotificationSc
+reen.kt:39:104 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/pet/NotificationSc
+reen.kt:148:80 
+Unresolved reference 
+'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:71:30 
+Unresolved reference 'P
+rimaryGradientColors'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:76:30 
+Unresolved reference 'S
+econdaryGradientColors'
+.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:81:30 
+Unresolved reference 
+'AccentGradientColors'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:93:30 
+Unresolved reference 'P
+rimaryGradientColors'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:98:30 
+Unresolved reference 'S
+econdaryGradientColors'
+.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:103:30 
+Unresolved reference 
+'AccentGradientColors'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/profile/UserProfil
+eScreen.kt:142:50 
+Unresolved reference 'P
+rimaryGradientColors'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:27:63 
+Unresolved reference 
+'StoreViewModel'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:33:16 
+Unresolved reference 
+'StoreViewModel'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:33:33 Cannot 
+infer type for this 
+parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:35:21 Cannot 
+infer type for this 
+parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:35:21 
+Property delegate must 
+have a 
+'getValue(Nothing?, 
+KProperty0<ERROR 
+CLASS: Cannot infer 
+argument for type 
+parameter T>)' method. 
+None of the following 
+functions is 
+applicable:
+fun <T> State<T>.getVal
+ue(thisObj: Any?, 
+property: 
+KProperty<*>): T
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:35:31 
+Unresolved reference 
+'products'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:35:40 Cannot 
+infer type for this 
+parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:36:22 Cannot 
+infer type for this 
+parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:36:22 
+Property delegate must 
+have a 
+'getValue(Nothing?, 
+KProperty0<ERROR 
+CLASS: Cannot infer 
+argument for type 
+parameter T>)' method. 
+None of the following 
+functions is 
+applicable:
+fun <T> State<T>.getVal
+ue(thisObj: Any?, 
+property: 
+KProperty<*>): T
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:36:32 
+Unresolved reference 
+'isLoading'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:36:42 Cannot 
+infer type for this 
+parameter. Please 
+specify it explicitly.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:98:33 No 
+value passed for 
+parameter 'enabled'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:98:33 No 
+value passed for 
+parameter 'selected'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:108:39 
+Overload resolution 
+ambiguity between 
+candidates:
+fun <T> Array<out 
+T>.isEmpty(): Boolean
+fun 
+ByteArray.isEmpty(): 
+Boolean
+fun 
+ShortArray.isEmpty(): 
+Boolean
+fun 
+IntArray.isEmpty(): 
+Boolean
+fun 
+LongArray.isEmpty(): 
+Boolean
+fun 
+FloatArray.isEmpty(): 
+Boolean
+fun 
+DoubleArray.isEmpty(): 
+Boolean
+fun BooleanArray.isEmpt
+y(): Boolean
+fun 
+CharArray.isEmpty(): 
+Boolean
+fun CharSequence.isEmpt
+y(): Boolean
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:120:48 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:122:44 
+Unresolved reference 
+'name'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:123:45 
+Unresolved reference 
+'price'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:124:48 
+Unresolved reference 
+'imageUrl'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:125:48 
+Unresolved reference 
+'category'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:126:45 
+Unresolved reference 
+'stock'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MarketplaceS
+creen.kt:127:90 
+Unresolved reference 
+'id'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/MyOrdersScre
+en.kt:81:24 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/ProductDetai
+lScreen.kt:133:75 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/store/ProductDetai
+lScreen.kt:139:79 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/AppointmentBoo
+kingScreen.kt:128:91 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/AppointmentBoo
+kingScreen.kt:167:99 
+Unresolved reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:85:40 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:86:33 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:93:44 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:94:37 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:110:45 
+Unresolved reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/MyAppointments
+Screen.kt:129:85 
+Unresolved reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/TelemedicineSc
+reen.kt:71:29 
+Unresolved reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/TelemedicineSc
+reen.kt:116:37 
+Unresolved reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetDetailScree
+n.kt:98:33 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetDetailScree
+n.kt:103:37 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetDetailScree
+n.kt:172:75 Unresolved 
+reference 
+'SuccessGradStart'.
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetDetailScree
+n.kt:184:65 Unresolved 
+reference 
+'DividerColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetDetailScree
+n.kt:187:78 Unresolved 
+reference 
+'SecondaryGradient'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetSearchScree
+n.kt:91:86 Unresolved 
+reference 'TextGrey'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetSearchScree
+n.kt:136:47 Unresolved 
+reference 
+'SuccessGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VetSearchScree
+n.kt:138:44 Unresolved 
+reference 
+'AccentGradStart'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/presentation/scr
+eens/vet/VideoCallScree
+n.kt:108:37 Unresolved 
+reference 
+'AccentColor'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/ui/theme/Color.k
+t:39:30 Unresolved 
+reference 'dp'.
+e: file:///C:/temp/PetC
+areApp/app/src/main/jav
+a/com/example/petcaresu
+perapp/ui/theme/Color.k
+t:40:30 Unresolved 
+reference 'dp'.
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:compileDebug
+Kotlin'.
+> A failure occurred 
+while executing org.jet
+brains.kotlin.compilerR
+unner.GradleCompilerRun
+nerWithWorkers$GradleKo
+tlinCompilerWorkAction
+   > Compilation 
+error. See log for 
+more details
+
+* Try:
+> Run with 
+--stacktrace option to 
+get the stack trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to 
+get full insights from 
+a Build Scan (powered 
+by Develocity).
+> Get more help at http
+s://help.gradle.org.
+
+BUILD FAILED in 31s
+31 actionable tasks: 1 executed, 30 up-to-date
+Configuration cache entry reused.

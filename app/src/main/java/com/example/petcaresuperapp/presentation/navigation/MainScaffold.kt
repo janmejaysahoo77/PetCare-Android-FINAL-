@@ -132,58 +132,68 @@ fun MainScaffold(
                 }
             },
             bottomBar = {
-                NavigationBar(
-                    containerColor = SurfaceDark.copy(alpha = 0.95f),
-                    tonalElevation = 0.dp,
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 12.dp)
-                        .clip(RoundedCornerShape(32.dp))
-                        .border(1.dp, Color.White.copy(alpha = 0.05f), RoundedCornerShape(32.dp))
-                ) {
-                    bottomNavItems.forEach { item ->
-                        val selected = currentRoute == item.route
-                        NavigationBarItem(
-                            selected = selected,
-                            onClick = {
-                                if (currentRoute != item.route) {
-                                    navController.navigate(item.route) {
-                                        popUpTo(Screen.Home.route) { saveState = true }
-                                        launchSingleTop = true
-                                        restoreState = true
+                val bottomBarRoutes = listOf(
+                    Screen.Home.route,
+                    Screen.HealthCard.route,
+                    Screen.ActivityTracker.route,
+                    Screen.Community.route,
+                    Screen.Marketplace.route
+                )
+
+                if (currentRoute in bottomBarRoutes) {
+                    NavigationBar(
+                        containerColor = SurfaceDark.copy(alpha = 0.95f),
+                        tonalElevation = 0.dp,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 12.dp)
+                            .clip(RoundedCornerShape(32.dp))
+                            .border(1.dp, Color.White.copy(alpha = 0.05f), RoundedCornerShape(32.dp))
+                    ) {
+                        bottomNavItems.forEach { item ->
+                            val selected = currentRoute == item.route
+                            NavigationBarItem(
+                                selected = selected,
+                                onClick = {
+                                    if (currentRoute != item.route) {
+                                        navController.navigate(item.route) {
+                                            popUpTo(Screen.Home.route) { saveState = true }
+                                            launchSingleTop = true
+                                            restoreState = true
+                                        }
                                     }
-                                }
-                            },
-                            icon = {
-                                val iconScale by animateFloatAsState(
-                                    targetValue = if (selected) 1.2f else 1f,
-                                    animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
-                                    label = "navIconScale"
+                                },
+                                icon = {
+                                    val iconScale by animateFloatAsState(
+                                        targetValue = if (selected) 1.2f else 1f,
+                                        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy),
+                                        label = "navIconScale"
+                                    )
+                                    Icon(
+                                        item.icon, 
+                                        contentDescription = item.title,
+                                        modifier = Modifier
+                                            .size(24.dp)
+                                            .scale(iconScale),
+                                        tint = if (selected) Primary2026 else TextGray
+                                    )
+                                },
+                                label = {
+                                    Text(
+                                        item.title,
+                                        fontSize = 10.sp,
+                                        fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                                        color = if (selected) Primary2026 else TextGray
+                                    )
+                                },
+                                colors = NavigationBarItemDefaults.colors(
+                                    indicatorColor = Primary2026.copy(alpha = 0.1f),
+                                    selectedIconColor = Primary2026,
+                                    unselectedIconColor = TextGray,
+                                    selectedTextColor = Primary2026,
+                                    unselectedTextColor = TextGray
                                 )
-                                Icon(
-                                    item.icon, 
-                                    contentDescription = item.title,
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                        .scale(iconScale),
-                                    tint = if (selected) Primary2026 else TextGray
-                                )
-                            },
-                            label = {
-                                Text(
-                                    item.title,
-                                    fontSize = 10.sp,
-                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
-                                    color = if (selected) Primary2026 else TextGray
-                                )
-                            },
-                            colors = NavigationBarItemDefaults.colors(
-                                indicatorColor = Primary2026.copy(alpha = 0.1f),
-                                selectedIconColor = Primary2026,
-                                unselectedIconColor = TextGray,
-                                selectedTextColor = Primary2026,
-                                unselectedTextColor = TextGray
                             )
-                        )
+                        }
                     }
                 }
             },

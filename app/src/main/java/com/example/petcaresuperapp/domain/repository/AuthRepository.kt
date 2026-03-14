@@ -1,5 +1,6 @@
 package com.example.petcaresuperapp.domain.repository
 
+import android.net.Uri
 import com.example.petcaresuperapp.core.util.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -23,4 +24,14 @@ interface AuthRepository {
      * Fetches the current user profile from the PetCare+ backend.
      */
     fun fetchUserProfile(): Flow<Resource<Unit>>
+
+    /**
+     * Fetches the user data from Firestore.
+     */
+    fun getUserData(): Flow<Resource<com.example.petcaresuperapp.domain.models.User>>
+
+    /**
+     * Uploads the user's profile photo to Cloudinary and updates Firestore.
+     */
+    fun uploadProfilePhoto(uri: Uri): Flow<Resource<String>>
 }

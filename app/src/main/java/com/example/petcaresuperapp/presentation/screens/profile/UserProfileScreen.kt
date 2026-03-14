@@ -12,7 +12,10 @@ import androidx.compose.material.icons.automirrored.rounded.HelpCenter
 import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,12 +25,28 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import com.example.petcaresuperapp.core.util.Resource
+import com.example.petcaresuperapp.domain.models.User
 import com.example.petcaresuperapp.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserProfileScreen(navController: NavController) {
+fun UserProfileScreen(
+    navController: NavController,
+    viewModel: ProfileViewModel = hiltViewModel()
+) {
+    val userState by viewModel.userState
+    val uploadState by viewModel.uploadState
+    
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let { viewModel.uploadProfilePhoto(it) }
+    }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -57,7 +76,30 @@ fun UserProfileScreen(navController: NavController) {
             contentPadding = PaddingValues(bottom = 32.dp)
         ) {
             item {
-                EnhancedProfileHeader()
+                when (userState) {
+                    is Resource.Loading -> {
+                        Box(modifier = Modifier.padding(32.dp)) {
+                            CircularProgressIndicator()
+                        }
+                    }
+                    is Resource.Success -> {
+                        val user = (userState as Resource.Success<User>).data
+                        EnhancedProfileHeader(
+                            user = user,
+                            isUploading = uploadState is Resource.Loading,
+                            onEditClick = { photoPickerLauncher.launch("image/*") }
+                        )
+                    }
+                    is Resource.Error -> {
+                        Text(
+                            text = (userState as Resource.Error).message ?: "Error loading profile",
+                            color = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                        EnhancedProfileHeader(null) // Show fallback
+                    }
+                    else -> EnhancedProfileHeader(null)
+                }
             }
             
             item {
@@ -128,7 +170,11 @@ fun UserProfileScreen(navController: NavController) {
 }
 
 @Composable
-fun EnhancedProfileHeader() {
+fun EnhancedProfileHeader(
+    user: com.example.petcaresuperapp.domain.models.User?,
+    isUploading: Boolean = false,
+    onEditClick: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -142,18 +188,38 @@ fun EnhancedProfileHeader() {
                 .background(Brush.linearGradient(PrimaryGradientColors))
                 .padding(4.dp)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surface),
+                .background(MaterialTheme.colorScheme.surface)
+                .clickable { onEditClick() },
             contentAlignment = Alignment.Center
         ) {
-            Icon(
-                Icons.Rounded.Person, 
-                contentDescription = null, 
-                tint = MaterialTheme.colorScheme.primary, 
-                modifier = Modifier.size(60.dp)
-            )
+            if (user?.photoUrl != null && user.photoUrl.isNotEmpty()) {
+                AsyncImage(
+                    model = user.photoUrl,
+                    contentDescription = "Profile Photo",
+                    modifier = Modifier.fillMaxSize().clip(CircleShape),
+                    contentScale = androidx.compose.ui.layout.ContentScale.Crop
+                )
+            } else {
+                Icon(
+                    Icons.Rounded.Person, 
+                    contentDescription = null, 
+                    tint = MaterialTheme.colorScheme.primary, 
+                    modifier = Modifier.size(60.dp)
+                )
+            }
+            
+            if (isUploading) {
+                Box(
+                    modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                }
+            }
             
             // Edit badge
             Surface(
+                onClick = onEditClick,
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .size(32.dp),
@@ -172,12 +238,12 @@ fun EnhancedProfileHeader() {
         
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            "John Doe", 
+            user?.name ?: "Guest", 
             style = MaterialTheme.typography.headlineSmall, 
             fontWeight = FontWeight.ExtraBold
         )
         Text(
-            "john.doe@example.com", 
+            user?.email ?: "Not logged in", 
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )

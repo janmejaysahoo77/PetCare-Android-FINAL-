@@ -1,0 +1,54 @@
+﻿> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:kaptGenerateStubsDebugKotlin
+w: Kapt currently doesn't support language version 2.0+. Falling back to 1.9.
+
+> Task :app:kaptDebugKotlin
+> Task :app:compileDebugKotlin
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/navigation/MainScaffold.kt:42:79 'val Icons.Rounded.DirectionsRun: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.DirectionsRun.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/navigation/MainScaffold.kt:50:64 'val Icons.Rounded.ExitToApp: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.ExitToApp.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/ai/AiAssistantScreen.kt:132:44 'val Icons.Filled.Send: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Send.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/gamification/AchievementsScreen.kt:42:51 'val Icons.Filled.DirectionsWalk: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.DirectionsWalk.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/HealthCardScreen.kt:71:43 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/NotificationScreen.kt:39:88 'val Icons.Filled.DirectionsWalk: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.DirectionsWalk.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/PetProfileScreen.kt:34:44 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/PetProfileScreen.kt:185:13 'fun Divider(modifier: Modifier = ..., thickness: Dp = ..., color: Color = ...): Unit' is deprecated. Renamed to HorizontalDivider.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/PetProfileScreen.kt:187:13 'fun Divider(modifier: Modifier = ..., thickness: Dp = ..., color: Color = ...): Unit' is deprecated. Renamed to HorizontalDivider.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/pet/PetProfileScreen.kt:189:13 'fun Divider(modifier: Modifier = ..., thickness: Dp = ..., color: Color = ...): Unit' is deprecated. Renamed to HorizontalDivider.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/store/MyOrdersScreen.kt:119:13 'fun Divider(modifier: Modifier = ..., thickness: Dp = ..., color: Color = ...): Unit' is deprecated. Renamed to HorizontalDivider.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/store/MyOrdersScreen.kt:131:13 'fun Divider(modifier: Modifier = ..., thickness: Dp = ..., color: Color = ...): Unit' is deprecated. Renamed to HorizontalDivider.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/TelemedicineScreen.kt:130:36 'val Icons.Filled.Chat: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Chat.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/VetDetailScreen.kt:56:44 'val Icons.Filled.Chat: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.Chat.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/screens/vet/VetSearchScreen.kt:46:44 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/ui/AdoptionRequestScreen.kt:49:44 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/ui/MyAdoptionRequestsScreen.kt:41:44 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/presentation/ui/PetDetailsScreen.kt:43:44 'val Icons.Filled.ArrowBack: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Filled.ArrowBack.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/ui/theme/Theme.kt:56:20 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///C:/temp/PetCareApp/app/src/main/java/com/example/petcaresuperapp/ui/theme/Theme.kt:57:20 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+
+[Incubating] Problems report is available at: file:///C:/temp/PetCareApp/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 7s
+17 actionable tasks: 3 executed, 14 up-to-date

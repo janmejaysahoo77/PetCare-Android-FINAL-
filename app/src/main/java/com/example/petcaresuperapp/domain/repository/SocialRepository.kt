@@ -28,6 +28,16 @@ class SocialRepository @Inject constructor(
 ) {
     private val postsCollection = firestore.collection("posts")
 
+    val currentUserId: String? get() = auth.currentUser?.uid
+
+    val currentUserIdFlow: Flow<String?> = callbackFlow {
+        val listener = FirebaseAuth.AuthStateListener { 
+            trySend(it.currentUser?.uid)
+        }
+        auth.addAuthStateListener(listener)
+        awaitClose { auth.removeAuthStateListener(listener) }
+    }
+
     fun getPosts(): Flow<List<SocialPost>> = callbackFlow {
         val listener = postsCollection
             .orderBy("createdAt", Query.Direction.DESCENDING)
@@ -64,13 +74,16 @@ class SocialRepository @Inject constructor(
         val currentUser = auth.currentUser ?: return
         val postId = UUID.randomUUID().toString()
         
-        // Fetch user details for the post (In a real app, this might come from a 'users' collection)
-        // For simplicity, we'll use current user info
+        // Fetch user data from Firestore
+        val userDoc = firestore.collection("users").document(currentUser.uid).get().await()
+        val userName = userDoc.getString("name") ?: currentUser.displayName ?: "User"
+        val userProfileImage = userDoc.getString("photoUrl") ?: currentUser.photoUrl?.toString() ?: ""
+        
         val post = SocialPost(
             postId = postId,
             userId = currentUser.uid,
-            userName = currentUser.displayName ?: "User",
-            userProfileImage = currentUser.photoUrl?.toString() ?: "",
+            userName = userName,
+            userProfileImage = userProfileImage,
             imageUrl = imageUrl,
             caption = caption,
             createdAt = Timestamp.now()
@@ -108,11 +121,16 @@ class SocialRepository @Inject constructor(
         val currentUser = auth.currentUser ?: return
         val commentId = UUID.randomUUID().toString()
         
+        // Fetch user data from Firestore
+        val userDoc = firestore.collection("users").document(currentUser.uid).get().await()
+        val userName = userDoc.getString("name") ?: currentUser.displayName ?: "User"
+        val userProfileImage = userDoc.getString("photoUrl") ?: currentUser.photoUrl?.toString() ?: ""
+        
         val comment = Comment(
             commentId = commentId,
             userId = currentUser.uid,
-            userName = currentUser.displayName ?: "User",
-            userProfileImage = currentUser.photoUrl?.toString() ?: "",
+            userName = userName,
+            userProfileImage = userProfileImage,
             comment = commentText,
             createdAt = Timestamp.now()
         )
@@ -124,5 +142,23 @@ class SocialRepository @Inject constructor(
     suspend fun isLiked(postId: String): Boolean {
         val userId = auth.currentUser?.uid ?: return false
         return postsCollection.document(postId).collection("likes").document(userId).get().await().exists()
+    }
+
+    suspend fun deletePost(postId: String) {
+        postsCollection.document(postId).delete().await()
+    }
+
+    fun getUsers(): Flow<List<com.example.petcaresuperapp.domain.models.User>> = callbackFlow {
+        val listener = firestore.collection("users")
+            .limit(100)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) return@addSnapshotListener
+                val users = snapshot?.documents?.mapNotNull { doc ->
+                    val user = doc.toObject(com.example.petcaresuperapp.domain.models.User::class.java)
+                    user?.copy(id = doc.id)
+                } ?: emptyList()
+                trySend(users)
+            }
+        awaitClose { listener.remove() }
     }
 }
